@@ -4,13 +4,14 @@ package com.de.util;
  * @author gs
  * @date 2020/7/7 - 19:59
  */
+import org.jim2mov.core.*;
 import org.jim2mov.utils.MovieUtils;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.concurrent.LinkedBlockingDeque;
 
-public class FilesToMov implements ImageProvider, FrameSavedListener{
+public class FilesToMov implements ImageProvider, FrameSavedListener {
     // 文件数组
     private ArrayList<String> fileArray = null;
     // 文件类型
