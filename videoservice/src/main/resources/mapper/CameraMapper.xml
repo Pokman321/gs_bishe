@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.de.dao.CameraMapper">
+    <resultMap id="BaseResultMap" type="com.de.entity.Camera">
+        <id column="camera_id" jdbcType="INTEGER" property="cameraId"/>
+        <result column="camera_name" jdbcType="VARCHAR" property="cameraName"/>
+        <result column="camera_url" jdbcType="VARCHAR" property="cameraUrl"/>
+        <result column="camera_cover_image" jdbcType="VARCHAR" property="cameraCoverImage"/>
+        <result column="camera_category_id" jdbcType="INTEGER" property="cameraCategoryId"/>
+        <result column="camera_category_name" jdbcType="VARCHAR" property="cameraCategoryName"/>
+        <result column="camera_enable" jdbcType="TINYINT" property="cameraEnable"/>
+<!--        <result column="camera_status" jdbcType="TINYINT" property="cameraStatus"/>-->
+        <result column="is_deleted" jdbcType="TINYINT" property="isDeleted"/>
+        <result column="camera_views" jdbcType="INTEGER" property="cameraViews"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+    camera_id, camera_name, camera_url, camera_cover_image, camera_category_id, camera_category_name,
+    camera_enable, is_deleted, camera_views,create_time, update_time
+  </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from tb_camera
+        where camera_id = #{cameraId,jdbcType=INTEGER} and is_deleted = 0
+    </select>
+
+    <select id="findAllCameras" parameterType="Map" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from tb_camera
+        where is_deleted=0
+        <if test="keyword!=null">
+            AND (camera_title like CONCAT('%',#{keyword},'%' ) or camera_category_name like CONCAT('%',#{keyword},'%' ))
+        </if>
+
+        <if test="cameraCategoryId!=null">
+            AND camera_category_id = #{cameraCategoryId}
+        </if>
+        order by camera_id desc
+        <if test="start!=null and limit!=null">
+            limit #{start},#{limit}
+        </if>
+    </select>
+
+    <select id="findEnableCameras" parameterType="Map" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from tb_camera
+        where is_deleted=0 and camera_enable=1
+        <if test="keyword!=null">
+            AND (camera_title like CONCAT('%',#{keyword},'%' ) or camera_category_name like CONCAT('%',#{keyword},'%' ))
+        </if>
+
+        <if test="cameraCategoryId!=null">
+            AND camera_category_id = #{cameraCategoryId}
+        </if>
+        order by camera_id desc
+        <if test="start!=null and limit!=null">
+            limit #{start},#{limit}
+        </if>
+    </select>
+
+    <select id="findCameraList" parameterType="Map" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from tb_camera
+        where is_deleted=0
+        <if test="keyword!=null">
+            AND (camera_Name like CONCAT('%',#{keyword},'%' ) or camera_category_name like CONCAT('%',#{keyword},'%' ))
+        </if>
+        <if test="cameraEnable!=null">
+            AND camera_enable = #{cameraEnable}
+        </if>
+        <if test="cameraCategoryId!=null">
+            AND camera_category_id = #{cameraCategoryId}
+        </if>
+        order by camera_id desc
+        <if test="start!=null and limit!=null">
+            limit #{start},#{limit}
+        </if>
+    </select>
+
+
+<!--    <select id="findCameraListByType" resultType="BaseResultMap">-->
+<!--        select-->
+<!--        <include refid="Base_Column_List"/>-->
+<!--        from tb_camera-->
+<!--        where is_deleted=0 AND camera_status = 1&lt;!&ndash; 发布状态的文章 &ndash;&gt;-->
+<!--        <if test="type!=null and type==0">-->
+<!--            order by camera_views desc-->
+<!--        </if>-->
+<!--        <if test="type!=null and type==1">-->
+<!--            order by camera_id desc-->
+<!--        </if>-->
+<!--        limit #{limit}-->
+<!--    </select>-->
+
+    <select id="getTotalCameras" parameterType="Map" resultType="int">
+        select count(*) from tb_camera
+        where is_deleted=0
+        <if test="keyword!=null">
+            AND (camera_name like CONCAT('%',#{keyword},'%' ) or camera_category_name like CONCAT('%',#{keyword},'%' ))
+        </if>
+
+        <if test="cameraCategoryId!=null">
+            AND camera_category_id = #{cameraCategoryId}
+        </if>
+    </select>
+
+
+    <update id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    UPDATE tb_camera SET is_deleted = 1
+    where camera_id = #{cameraId,jdbcType=INTEGER} and is_deleted = 0
+  </update>
+
+    <update id="deleteBatch">
+        update tb_camera
+        set is_deleted=1 where camera_id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </update>
+
+    <insert id="insertCamera" parameterType="com.de.entity.Camera">
+    insert into tb_camera (camera_id, camera_name, camera_url,
+      camera_cover_image, camera_category_id, camera_category_name,
+      camera_enable, is_deleted,camera_views, create_time, update_time)
+    values (#{cameraId,jdbcType=INTEGER}, #{cameraName,jdbcType=VARCHAR}, #{cameraUrl,jdbcType=VARCHAR},
+      #{cameraCoverImage,jdbcType=VARCHAR}, #{cameraCategoryId,jdbcType=INTEGER}, #{cameraCategoryName,jdbcType=VARCHAR},
+      #{cameraEnable,jdbcType=TINYINT}, #{isDeleted,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP},
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+
+    <insert id="insertSelective" useGeneratedKeys="true" keyProperty="cameraId"
+            parameterType="com.de.entity.Camera">
+        insert into tb_camera
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="cameraId != null">
+                camera_id,
+            </if>
+            <if test="cameraName != null">
+                camera_name,
+            </if>
+            <if test="cameraUrl != null">
+                camera_url,
+            </if>
+            <if test="cameraCoverImage != null">
+                camera_cover_image,
+            </if>
+            <if test="cameraCategoryId != null">
+                camera_category_id,
+            </if>
+            <if test="cameraCategoryName != null">
+                camera_category_name,
+            </if>
+
+            <if test="cameraEnable != null">
+                camera_enable,
+            </if>
+
+            <if test="isDeleted != null">
+                is_deleted,
+            </if>
+            <if test="cameraViews!=null">
+                camera_views,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="cameraId != null">
+                #{cameraId,jdbcType=INTEGER},
+            </if>
+            <if test="cameraName != null">
+                #{cameraName,jdbcType=VARCHAR},
+            </if>
+            <if test="cameraUrl != null">
+                #{cameraUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="cameraCoverImage != null">
+                #{cameraCoverImage,jdbcType=VARCHAR},
+            </if>
+            <if test="cameraCategoryId != null">
+                #{cameraCategoryId,jdbcType=INTEGER},
+            </if>
+            <if test="cameraCategoryName != null">
+                #{cameraCategoryName,jdbcType=VARCHAR},
+            </if>
+
+            <if test="cameraEnable != null">
+                #{cameraEnable,jdbcType=TINYINT},
+            </if>
+
+            <if test="isDeleted != null">
+                #{isDeleted,jdbcType=TINYINT},
+            </if>
+            <if test="cameraViews != null">
+                #{cameraViews,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            
+        </trim>
+    </insert>
+
+    <update id="updateCameraCategorys">
+        update tb_camera
+        set camera_category_id = #{categoryId,jdbcType=INTEGER},
+        camera_category_name = #{categoryName,jdbcType=VARCHAR}
+        where camera_id in
+        <foreach item="cameraId" collection="ids" open="(" separator="," close=")">
+            #{cameraId}
+        </foreach>
+        and is_deleted =0
+    </update>
+
+
+<update id="updateByPrimaryKey" parameterType="com.de.entity.Camera">
+    update tb_camera
+    set camera_name = #{cameraName,jdbcType=VARCHAR},
+      camera_url = #{cameraUrl,jdbcType=VARCHAR},
+      camera_cover_image = #{cameraCoverImage,jdbcType=VARCHAR},
+      camera_category_id = #{cameraCategoryId,jdbcType=INTEGER},
+      camera_category_name = #{cameraCategoryName,jdbcType=VARCHAR},
+      camera_enable = #{cameraEnable,jdbcType=TINYINT},
+ 
+      is_deleted = #{isDeleted,jdbcType=TINYINT},
+      camera_views = #{cameraViews,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where camera_id = #{cameraId,jdbcType=INTEGER}
+  </update>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.de.entity.Camera">
+        update tb_camera
+        <set>
+            <if test="cameraName != null">
+                camera_name = #{cameraName,jdbcType=VARCHAR},
+            </if>
+            <if test="cameraUrl != null">
+                camera_url = #{cameraUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="cameraCoverImage != null">
+                camera_cover_image = #{cameraCoverImage,jdbcType=VARCHAR},
+            </if>
+
+            <if test="cameraCategoryId != null">
+                camera_category_id = #{cameraCategoryId,jdbcType=INTEGER},
+            </if>
+            <if test="cameraCategoryName != null">
+                camera_category_name = #{cameraCategoryName,jdbcType=VARCHAR},
+            </if>
+
+            <if test="cameraEnable != null">
+                camera_enable = #{cameraEnable,jdbcType=TINYINT},
+            </if>
+
+
+            <if test="isDeleted != null">
+                is_deleted = #{isDeleted,jdbcType=TINYINT},
+            </if>
+            <if test="cameraViews != null">
+                camera_views = #{cameraViews,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP}
+            </if>
+
+        </set>
+        where camera_id = #{cameraId,jdbcType=BIGINT}
+    </update>
+
+    <update id="updateCameraEnable" parameterType="java.lang.Integer">
+        update tb_camera
+        set camera_enable=1 where
+        camera_id=#{cameraId,jdbcType=INTEGER}
+    </update>
+    
+</mapper>

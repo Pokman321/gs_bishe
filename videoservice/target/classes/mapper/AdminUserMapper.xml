@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.de.dao.AdminUserMapper">
+    <resultMap id="BaseResultMap" type="com.de.entity.AdminUser">
+        <id column="admin_user_id" jdbcType="INTEGER" property="adminUserId"/>
+        <result column="login_user_name" jdbcType="VARCHAR" property="loginUserName"/>
+        <result column="login_password" jdbcType="VARCHAR" property="loginPassword"/>
+        <result column="nick_name" jdbcType="VARCHAR" property="nickName"/>
+        <result column="locked" jdbcType="TINYINT" property="locked"/>
+        <result column="userAvatar" jdbcType="VARCHAR" property="userAvatar"/>
+        <result column="isManager" jdbcType="TINYINT" property="isManager"/>
+        <result column="email" jdbcType="VARCHAR" property="email"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        admin_user_id, login_user_name, login_password, nick_name, locked,userAvatar,isManager,email
+    </sql>
+
+    <select id="login" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from tb_admin_user
+        where login_user_name = #{userName,jdbcType=VARCHAR} and login_password=#{password,jdbcType=VARCHAR} and isManager=#{isManager,jdbcType=TINYINT}
+    </select>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from tb_admin_user
+        where admin_user_id = #{adminUserId,jdbcType=INTEGER}
+    </select>
+
+    <select id="selectByName" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from tb_admin_user
+        where login_user_name = #{loginUserName,jdbcType=VARCHAR}
+    </select>
+
+    <select id="selectByNickName" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from tb_admin_user
+        where nick_name = #{nickName,jdbcType=VARCHAR}
+    </select>
+
+    <insert id="saveUser" useGeneratedKeys="true" keyProperty="adminUserId"
+            parameterType="com.de.entity.AdminUser">
+        insert into tb_admin_user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="adminUserId != null">
+                admin_user_id,
+            </if>
+            <if test="loginUserName != null">
+                login_user_name,
+            </if>
+            <if test="loginPassword != null">
+                login_password,
+            </if>
+            <if test="nickName != null">
+                nick_name,
+            </if>
+            <if test="locked != null">
+                locked,
+            </if>
+            <if test="userAvatar != null">
+                userAvatar,
+            </if>
+
+            <if test="isManager != null">
+                isManager,
+            </if>
+
+            <if test="email != null">
+                email,
+            </if>
+
+
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="adminUserId != null">
+                #{adminUserId,jdbcType=INTEGER},
+            </if>
+            <if test="loginUserName != null">
+                #{loginUserName,jdbcType=VARCHAR},
+            </if>
+            <if test="loginPassword != null">
+                #{loginPassword,jdbcType=VARCHAR},
+            </if>
+            <if test="nickName != null">
+                #{nickName,jdbcType=VARCHAR},
+            </if>
+            <if test="locked != null">
+                #{locked,jdbcType=TINYINT},
+            </if>
+            <if test="userAvatar != null">
+                #{userAvatar,jdbcType=VARCHAR},
+            </if>
+
+            <if test="isManager != null">
+                #{isManager,jdbcType=TINYINT},
+            </if>
+
+            <if test="email != null">
+                #{email,jdbcType=VARCHAR},
+            </if>
+
+
+        </trim>
+    </insert>
+
+</mapper>

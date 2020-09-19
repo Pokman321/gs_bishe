@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="@192.168.137.25" uuid="e761786a-c5e9-4f62-b8dd-35f5cf86f488">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://192.168.137.25:3306</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="@192.168.137.25 [2]" uuid="dc385369-424f-4981-8a1b-344d95e7cee7">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://192.168.137.25:3306</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="@10.0.0.4" uuid="147da66d-c638-4fee-9e9b-f17239e8a7fb">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://10.0.0.4:3306</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="@172.20.10.2" uuid="cf7881aa-249f-44b9-a535-650bf085454d">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://172.20.10.2:3306</jdbc-url>
+    </data-source>
+  </component>
+</project>

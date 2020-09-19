@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.de.dao.VideoMapper">
+    <resultMap id="BaseResultMap" type="com.de.entity.UpdateVideo">
+        <id column="video_id" jdbcType="INTEGER" property="videoId"/>
+        <result column="user_name" jdbcType="VARCHAR" property="userName"/>
+        <result column="video_name" jdbcType="VARCHAR" property="videoName"/>
+        <result column="video_cover_image" jdbcType="VARCHAR" property="videoCoverImage"/>
+        <result column="video_path" jdbcType="VARCHAR" property="videoPath"/>
+        <result column="result_path" jdbcType="VARCHAR" property="resultPath"/>
+        <result column="has_result" jdbcType="TINYINT" property="hasResult"/>
+        <!--        <result column="camera_status" jdbcType="TINYINT" property="cameraStatus"/>-->
+        <result column="video_time" jdbcType="TIMESTAMP" property="videoTime"/>
+        <result column="result_time" jdbcType="TIMESTAMP" property="resultTime"/>
+        <result column="camera_category_id" jdbcType="INTEGER" property="cameraCategoryId"/>
+        <result column="video_views" jdbcType="INTEGER" property="videoViews"/>
+        <result column="is_show" jdbcType="TINYINT" property="isShow"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+    video_id,user_name,video_name,video_cover_image,video_path,result_path,has_result,
+    video_time,result_time,camera_category_id,video_views,is_show
+  </sql>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete
+        <include refid="Base_Column_List"/>
+        from tb_update
+        where video_id = #{videoId,jdbcType=INTEGER}
+    </delete>
+
+    <delete id="deleteBatch">
+        delete
+        <include refid="Base_Column_List"/>
+        from tb_update
+        where video_id in
+        <foreach item="videoId" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <insert id="insertSelective" useGeneratedKeys="true" keyProperty="videoId"
+            parameterType="com.de.entity.UpdateVideo">
+        insert into tb_camera
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="videoId != null">
+                video_id,
+            </if>
+            <if test="userName != null">
+                user_name,
+            </if>
+            <if test="videoName != null">
+                video_name,
+            </if>
+            <if test="videoCoverImage != null">
+                video_cover_image,
+            </if>
+            <if test="videoPath != null">
+                video_path,
+            </if>
+            <if test="resultPath != null">
+                result_path,
+            </if>
+
+            <if test="hasResult != null">
+                has_result,
+            </if>
+
+            <if test="videoTime != null">
+                video_time,
+            </if>
+            <if test="resultTime!=null">
+                result_time,
+            </if>
+            <if test="cameraCategoryId != null">
+                camera_category_id,
+            </if>
+            <if test="cameraCategoryName != null">
+                camera_category_name,
+            </if>
+            <if test="videoViews != null">
+                video_views,
+            </if>
+            <if test="isShow != null">
+                is_show
+            </if>
+
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="videoId != null">
+                #{videoId,jdbcType=INTEGER},
+            </if>
+            <if test="userName != null">
+                #{userName,jdbcType=VARCHAR},
+            </if>
+            <if test="videoName != null">
+                #{videoName,jdbcType=VARCHAR},
+            </if>
+            <if test="videoCoverImage != null">
+                #{videoCoverImage,jdbcType=VARCHAR},
+            </if>
+            <if test="videoPath != null">
+                #{videoPath,jdbcType=VARCHAR},
+            </if>
+            <if test="resultPath != null">
+                #{resultPath,jdbcType=VARCHAR},
+            </if>
+
+            <if test="hasResult != null">
+                #{hasResult,jdbcType=TINYINT},
+            </if>
+
+            <if test="videoTime != null">
+                #{videoTime,jdbcType=TIMESTAMP},
+            </if>
+
+            <if test="resultTime != null">
+                #{resultTime,jdbcType=TIMESTAMP},
+            </if>
+
+            <if test="cameraCategoryId != null">
+                #{cameraCategoryId,jdbcType=INTEGER},
+            </if>
+            <if test="cameraCategoryName != null">
+                #{cameraCategoryName,jdbcType=VARCHAR},
+            </if>
+            <if test="videoViews != null">
+                #{videoViews,jdbcType=INTEGER},
+            </if>
+            <if test="isShow != null">
+                #{isShow,jdbcType=TINYINT},
+            </if>
+        </trim>
+    </insert>
+
+
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from tb_update
+        where video_id = #{videoId,jdbcType=INTEGER}
+    </select>
+
+<!--    <select id="findAllVideos" parameterType="Map" resultMap="BaseResultMap">-->
+<!--        select-->
+<!--        <include refid="Base_Column_List"/>-->
+<!--        from tb_update-->
+<!--&#45;&#45;         where is_deleted=0-->
+<!--        <if test="keyword!=null">-->
+<!--            AND (camera_title like CONCAT('%',#{keyword},'%' ) or camera_category_name like CONCAT('%',#{keyword},'%' ))-->
+<!--        </if>-->
+
+<!--        <if test="cameraCategoryId!=null">-->
+<!--            AND camera_category_id = #{cameraCategoryId}-->
+<!--        </if>-->
+<!--        order by camera_id desc-->
+<!--        <if test="start!=null and limit!=null">-->
+<!--            limit #{start},#{limit}-->
+<!--        </if>-->
+<!--    </select>-->
+
+
+    <select id="findVideoList" parameterType="Map" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from tb_update
+        where is_show=1 or user_name=#{userName}
+
+        <if test="keyword!=null">
+            AND (video_name like CONCAT('%',#{keyword},'%' ) or camera_category_name like CONCAT('%',#{keyword},'%' ))
+        </if>
+
+        <if test="cameraCategoryId!=null">
+            AND camera_category_id = #{cameraCategoryId}
+        </if>
+        order by video_id desc
+        <if test="start!=null and limit!=null">
+            limit #{start},#{limit}
+        </if>
+    </select>
+
+    <select id="findVideoListByKeyWord" parameterType="Map" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from tb_update
+        where 1=1
+        <if test="keyWord!=null">
+            AND (video_name like CONCAT('%',#{keyWord},'%') or camera_category_name like CONCAT('%',#{keyWord},'%'))
+        </if>
+        order by video_id desc
+    </select>
+
+    <select id="findOwnVideoList" parameterType="Map" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from tb_update
+        where user_name=#{userName}
+        <if test="keyword!=null">
+            AND (video_name like CONCAT('%',#{keyword},'%' ) or camera_category_name like CONCAT('%',#{keyword},'%' ))
+        </if>
+
+        <if test="cameraCategoryId!=null">
+            AND camera_category_id = #{cameraCategoryId}
+        </if>
+        order by video_id desc
+        <if test="start!=null and limit!=null">
+            limit #{start},#{limit}
+        </if>
+    </select>
+
+
+
+
+    <select id="findVideoListByType" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from tb_update
+        where is_show=1 or user_name=#{userName}<!-- 发布状态的视频或自己的视频 -->
+        <if test="type!=null and type==0">
+            order by video_views desc
+        </if>
+        <if test="type!=null and type==1">
+            order by video_id desc
+        </if>
+        limit #{limit}
+    </select>
+
+    <select id="getUserTotalVideos" parameterType="Map" resultType="int">
+        select count(*) from tb_update
+
+        <if test="keyword!=null">
+            AND (video_name like CONCAT('%',#{keyword},'%' ) or camera_category_name like CONCAT('%',#{keyword},'%' ))
+        </if>
+
+        <if test="cameraCategoryId!=null">
+            AND camera_category_id = #{cameraCategoryId}
+        </if>
+    </select>
+
+    <select id="getTotalVideos" parameterType="Map" resultType="int">
+        select count(*) from tb_update
+        where is_show=1 or user_name=#{userName}
+        <if test="keyword!=null">
+            AND (video_name like CONCAT('%',#{keyword},'%' ) or camera_category_name like CONCAT('%',#{keyword},'%' ))
+        </if>
+
+        <if test="cameraCategoryId!=null">
+            AND camera_category_id = #{cameraCategoryId}
+        </if>
+    </select>
+
+
+    <update id="updateCameraCategorys">
+        update tb_update
+        set camera_category_id = #{categoryId,jdbcType=INTEGER},
+        camera_category_name = #{categoryName,jdbcType=VARCHAR}
+        where video_id in
+        <foreach item="videoId" collection="ids" open="(" separator="," close=")">
+            #{videoId}
+        </foreach>
+    </update>
+
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.de.entity.UpdateVideo">
+        update tb_update
+        <set>
+            <if test="videoId != null">
+                video_id = #{videoId,jdbcType=INTEGER},
+            </if>
+            <if test="userName != null">
+                user_name = #{userName,jdbcType=VARCHAR},
+            </if>
+
+            <if test="videoName != null">
+                video_name = #{videoName,jdbcType=VARCHAR},
+            </if>
+
+            <if test="videoCoverImage != null">
+                video_cover_image = #{videoCoverImage,jdbcType=VARCHAR},
+            </if>
+
+            <if test="videoPath != null">
+                video_path = #{videoPath,jdbcType=VARCHAR},
+            </if>
+
+            <if test="resultPath != null">
+                result_path = #{resultPath,jdbcType=VARCHAR},
+            </if>
+
+            <if test="hasResult != null">
+                has_result = #{hasResult,jdbcType=TINYINT},
+            </if>
+
+            <if test="videoTime != null">
+                video_time = #{videoTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="resultTime != null">
+                result_time = #{resultTime,jdbcType=TIMESTAMP},
+            </if>
+
+            <if test="cameraCategoryId != null">
+                camera_category_id = #{cameraCategoryId,jdbcType=INTEGER},
+            </if>
+
+            <if test="cameraCategoryName != null">
+                camera_category_name = #{cameraCategoryName,jdbcType=VARCHAR},
+            </if>
+
+            <if test="videoViews != null">
+                video_views = #{videoViews,jdbcType=INTEGER}
+            </if>
+
+            <if test="isShow != null">
+                is_show = #{isShow,jdbcType=TINYINT}
+            </if>
+
+        </set>
+        where video_id = #{videoId,jdbcType=BIGINT}
+    </update>
+
+
+</mapper>

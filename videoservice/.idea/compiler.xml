@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="rabbittest" />
+      </profile>
+      <profile name="Annotation profile for mysearch" enabled="true">
+        <sourceOutputDir name="../../../mysearch/target/generated-sources/annotations" />
+        <sourceTestOutputDir name="../../../mysearch/target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="mysearch" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel target="9" />
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="mysearch" options="-parameters" />
+      <module name="rabbittest" options="-parameters --add-exports java.desktop/sun.font=ALL-UNNAMED" />
+      <module name="videoservice" options="--add-exports java.desktop/sun.font=ALL-UNNAMED" />
+    </option>
+  </component>
+</project>

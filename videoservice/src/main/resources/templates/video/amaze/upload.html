@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<header th:replace="admin/header::header-fragment"></header>
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+    <!-- 引入页面头header-fragment -->
+<!--    <div th:replace="admin/header::header-nav"></div>-->
+    <!-- 引入工具栏sidebar-fragment -->
+<!--    <div th:replace="admin/sidebar::sidebar-fragment(${path})"></div>-->
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <div class="content-header">
+            <div class="container-fluid">
+            </div><!-- /.container-fluid -->
+        </div>
+        <!-- Main content -->
+        <div class="content">
+            <div class="container-fluid">
+                <div class="card card-primary card-outline">
+                    <div class="card-header">
+                        <h3 class="card-title">图像上传模块</h3>
+                    </div> <!-- /.card-body -->
+                    <div class="row">
+                        <div class="grid-btn col-sm-offset-2 col-sm-2">
+                            <button class="btn btn-file" id="uploadButton"><i
+                                    class="fa fa-upload"></i>&nbsp;上传视频
+                            </button>
+
+                        </div>
+                        <div class="grid-btn col-sm-offset-3 col-sm-2" >
+                            <button class="btn btn-info" id="domotButton">
+                                &nbsp;开始计算
+                            </button>
+
+                        </div>
+
+                        <div class="grid-btn col-sm-offset-4 col-sm-2">
+
+                            <button class="btn btn-success" id="getresultButton">
+                                &nbsp;查看结果
+                            </button>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="panel panel-default">
+                            <div style="padding: 10px 0 20px 10px;">
+                                <h3>&nbsp;&nbsp;&nbsp;test</h3>
+                                <br>
+                                <p>&nbsp;&nbsp;&nbsp;test页面</p>
+                                <video id="img" src="##" controls autoplay>
+                                    <div class="fallback"> <p>You must have an HTML5 capable browser.</p> </div>
+
+                                </video>
+                            </div>
+                        <div class="panel panel-default">
+                            <div style="padding: 10px 0 20px 10px;">
+                                <h3>行人跟踪结果</h3>
+                                <video id="videoresult" src="##" controls autoplay>
+                                    <div class="fallback"> <p>You must have an HTML5 capable browser.</p> </div>
+                                </video>
+                            </div>
+                        </div>
+                        </div>
+                    </div><!-- /.card-body -->
+                </div>
+            </div><!-- /.container-fluid -->
+        </div>
+
+        <div class="content">
+            <div class="container-fluid">
+                <div class="card card-primary card-outline">
+                    <div class="card-header">
+                        <h3 class="card-title">视频博客信息详情</h3>
+                    </div>
+                    <div class="card-body">
+                        <!-- 几个基础的输入框，名称、分类等输入框 -->
+                        <form id="blogForm" onsubmit="return false;">
+<!--                            <div class="form-group" style="display:flex;">-->
+<!--                                <input type="hidden" id="videoId" name="videoId" th:value="${video!=null and video.videoId!=null }?${video.videoId}: 0">-->
+<!--                                <input type="text" class="form-control col-sm-6" id="videoName" name="videoName"-->
+<!--                                       placeholder="*请输入视频标题(必填)"-->
+<!--                                       th:value="${video!=null and video.videoName!=null }?${video.videoName}: ''"-->
+<!--                                       required="true">-->
+<!--                                &nbsp;&nbsp;-->
+<!--                                <select class="form-control select2" style="width: 100%;" id="cameraCategoryId"-->
+<!--                                        data-placeholder="请选择分类...">-->
+<!--                                    <th:block th:if="${null == categories}">-->
+<!--                                        <option value="0" selected="selected">默认分类</option>-->
+<!--                                    </th:block>-->
+<!--                                    <th:block th:unless="${null == categories}">-->
+<!--                                        <th:block th:each="c : ${categories}">-->
+<!--                                            <option th:value="${c.categoryId}" th:text="${c.categoryName}"-->
+<!--                                                    th:selected="${null !=blog and null !=video.cameraCategoryId and video.cameraCategoryId==c.categoryId} ?true:false">-->
+<!--                                                >-->
+<!--                                            </option>-->
+<!--                                        </th:block>-->
+<!--                                    </th:block>-->
+<!--                                </select>-->
+<!--                                -->
+<!--                            </div>-->
+                            <div class="form-group" style="display:flex;">
+                                <input type="text" class="form-control col-sm-6" id="videoPath" name="videoPath"
+                                       placeholder="视频路径:请点击上传后获取" readonly="readonly"
+                                       th:value="${video!=null and video.videoPath!=null }?${video.videoPath}: ''"
+                                       required="true">&nbsp;&nbsp;
+                                <input type="text" class="form-control col-sm-6" id="videoTime" name="videoTime"
+                                       placeholder="视频上传时间" readonly="readonly"
+                                       th:value="${video!=null and video.videoTime!=null }?${video.videoTime}: ''"
+                                       required="true">&nbsp;&nbsp;
+                            </div>
+
+                            <div class="form-group" style="display:flex;">
+                                <input type="hidden" id="hasResult" name="hasResult" th:value="${video!=null and video.hasResult!=null }?${video.hasResult}: 1">
+                                <input type="text" class="form-control col-sm-6" id="resultPath" name="videoPath"
+                                       placeholder="结果路径:请点击开始计算后获取" readonly="readonly"
+                                       th:value="${video!=null and video.resultPath!=null }?${video.resultPath}: ''"
+                                       required="true">&nbsp;&nbsp;
+                                <input type="text" class="form-control col-sm-6" id="resultTime" name="videoTime"
+                                       placeholder="视频路径:请点击上传后获取" readonly="readonly"
+                                       th:value="${video!=null and video.resultTime!=null }?${video.resultTime}: ''"
+                                       required="true">&nbsp;&nbsp;
+                            </div>
+
+                            <div class="form-group">
+                                <!-- 按钮 -->
+                                &nbsp;<button class="btn btn-info float-right" style="margin-left: 5px;"
+                                              id="confirmButton">保存文章
+                            </button>&nbsp;
+                                &nbsp;<button class="btn btn-secondary float-right" style="margin-left: 5px;"
+                                              id="cancelButton">返回文章列表
+                            </button>&nbsp;
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div><!-- /.container-fluid -->
+        </div>
+
+
+        <div class="content">
+            <!-- 模态框（Modal） -->
+            <div class="modal fade" id="articleModal" tabindex="-1" role="dialog" aria-labelledby="articleModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                    aria-hidden="true">&times;</span></button>
+                            <h6 class="modal-title" id="articleModalLabel">信息完善</h6>
+                        </div>
+                        <div class="modal-body">
+                            <form onsubmit="return false;">
+                                <div class="form-group">
+                                    <div class="col-sm-4">
+                                        <th:block th:if="${null == video}">
+                                            <img id="videoCoverImage" src="/admin/dist/img/img-upload.png"
+                                                 style="height: 64px;width: 64px;">
+                                        </th:block>
+                                        <th:block th:unless="${null == video}">
+                                            <img id="videoCoverImage" th:src="${video.videoCoverImage}"
+                                                 style="width:160px ;height: 120px;display:block;">
+                                        </th:block>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="form-group">
+                                    <div class="col-sm-4">
+
+                                        <button class="btn btn-secondary" style="margin-bottom: 5px;"
+                                                id="originCoverImage"><i
+                                                class="fa fa-random"></i>&nbsp;默认封面
+                                        </button>
+
+                                        <button class="btn btn-info" style="margin-bottom: 5px;" id="uploadCoverImage">
+                                            <i class="fa fa-picture-o"></i>&nbsp;上传封面
+                                        </button>
+
+                                    </div>
+                                </div>
+                                <div class="form-group" style="display:flex;">
+<!--                                    <input type="hidden" id="userName"-->
+                                    <input type="hidden" id="videoId" name="videoId" th:value="${video!=null and video.videoId!=null }?${video.videoId}: 0">
+                                    <input type="text" class="form-control col-sm-4" id="blogName" name="blogName"
+                                           placeholder="*请输入视频标题(必填)"
+                                           th:value="${video!=null and video.videoName!=null }?${video.videoName}: ''"
+                                           required="true">
+                                    &nbsp;&nbsp;
+                                    <select class="form-control select2" style="width: 100%;" id="cameraCategoryId"
+                                            data-placeholder="请选择视频分类...">
+                                        <th:block th:if="${null == categories}">
+                                            <option value="0" selected="selected">默认分类</option>
+                                        </th:block>
+                                        <th:block th:unless="${null == categories}">
+                                            <th:block th:each="c : ${categories}">
+                                                <option th:value="${c.categoryId}" th:text="${c.categoryName}"
+                                                        th:selected="${null !=video and null !=video.cameraCategoryId and video.cameraCategoryId==c.categoryId} ?true:false">
+                                                    >
+                                                </option>
+                                            </th:block>
+                                        </th:block>
+                                    </select>
+
+
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">是否公开:&nbsp;</label>
+                                    <input name="videoStatus" type="radio" id="publish"
+                                           checked=true
+                                           th:checked="${null==video||(null !=video and null !=video.isshow and video.isShow==1)} ?true:false"
+                                           value="1"/>&nbsp;公开&nbsp;
+                                    <input name="videoStatus" type="radio" id="draft" value="0"
+                                           th:checked="${null !=video and null !=video.isShow and video.isShow==0} ?true:false"/>&nbsp;私密&nbsp;
+                                </div>
+
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                            <button type="button" class="btn btn-primary" id="saveButton">确认</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.modal -->
+        </div>
+
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+    <!-- 引入页脚footer-fragment -->
+    <!--    <div th:replace="admin/footer::footer-fragment"></div>-->
+</div>
+<!-- jQuery -->
+<script th:src="@{/admin/plugins/jquery/jquery.min.js}"></script>
+<!-- jQuery UI 1.11.4 -->
+<script th:src="@{/admin/plugins/jQueryUI/jquery-ui.min.js}"></script>
+<!-- Bootstrap 4 -->
+<script th:src="@{/admin/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
+<script th:src="@{/admin/plugins/ajaxupload/ajaxupload.js}"></script>
+<!-- AdminLTE App -->
+<script th:src="@{/admin/dist/js/adminlte.min.js}"></script>
+<!-- sweetalert -->
+<script th:src="@{/admin/plugins/sweetalert/sweetalert.min.js}"></script>
+<script th:src="@{/admin/dist/js/test.js}"></script>
+</body>
+</html>

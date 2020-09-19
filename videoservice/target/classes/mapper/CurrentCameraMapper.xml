@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.de.dao.CurCameraMapper">
+
+    <resultMap id="BaseResultMap" type="com.de.entity.CurImage">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="camera_id" property="cameraId" jdbcType="INTEGER"/>
+        <result column="image_time" property="imageTime" jdbcType="BIGINT"/>
+        <result column="image_url" property="imageUrl" jdbcType="VARCHAR"/>
+        <result column="person_num" property="personNum" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,camera_id,image_time,image_url,person_num
+    </sql>
+
+    <select id="existTable" parameterType="String" resultType="Integer">
+        select count(*)
+        from information_schema.TABLES
+        where table_name=#{tableName}
+    </select>
+
+    <update id="dropTable">
+        DROP TABLE IF exists ${tableName}
+    </update>
+    <update id="createNewTable" parameterType="String">
+        CREATE TABLE ${tableName}(
+            id bigint(20) NOT NULL AUTO_INCREMENT,
+            camera_id int(10) default ${camera_id},
+            image_time bigint(20) NOT NULL unique,
+            image_url varchar(200) NOT NULL,
+            person_num int(10) DEFAULT 0,
+
+            primary key (id)
+--             unique key (uniq_time_idx) `image_time`
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8
+
+    </update>
+    
+    <insert id="addImage" useGeneratedKeys="true" keyProperty="curImage.id"
+            parameterType="com.de.entity.CurImage" >
+        insert into ${tableName} (camera_id,image_time,image_url,person_num)
+        values (#{curImage.cameraId,jdbcType=INTEGER},#{curImage.imageTime,jdbcType=BIGINT},#{curImage.imageUrl,jdbcType=VARCHAR},#{curImage.personNum,jdbcType=INTEGER})
+    </insert>
+
+    <select id="selectByTime" resultMap="BaseResultMap" >
+        select
+        <include refid="Base_Column_List"/>
+        from ${tableName}
+        where image_time between #{start_time,jdbcType=BIGINT} and #{end_time,jdbcType=BIGINT}
+    </select>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from ${tableName}
+        where id=#{id,jdbcType=BIGINT}
+    </select>
+
+    <select id="selectAllImage" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from ${tableName}
+    </select>
+
+    <select id="selectImageHasPerson" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from ${tableName}
+        where person_num>0
+    </select>
+
+
+<!--    <delete id="deleteBatch" parameterType="java.util.List">-->
+<!--        DELETE from ${tableName} WHERE id in-->
+<!--        <foreach item="id" collection="list" index="index" open="(" separator="," close=")">-->
+<!--            #{id}-->
+<!--        </foreach>-->
+<!--    </delete>-->
+
+
+    <delete id="deleteBatch" parameterType="java.util.HashMap">
+        DELETE from ${tableName} WHERE id in
+        <foreach item="id" collection="ids" index="index" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+<!--    <insert id="addImage" useGeneratedKeys="true" keyProperty="id"-->
+<!--            parameterType="com.de.entity.CurImage" >-->
+<!--        insert into camera1 (camera_id,image_time,image_url,person_num)-->
+<!--        values (#{cameraId,jdbcType=INTEGER},#{imageTime,jdbcType=BIGINT},#{imageUrl,jdbcType=VARCHAR},#{personNum,jdbcType=INTEGER})-->
+<!--    </insert>-->
+
+</mapper>

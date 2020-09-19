@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="commons-pool2-2.3">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/commons-pool2-2.3.jar!/" />
+      <root url="jar://D:/TestPic/FileTomov/images/Jim2mov.jar!/" />
+      <root url="jar://D:/TestPic/FileTomov/images/jmf-2_1_1e-alljava/JMF-2.1.1e/lib/customizer.jar!/" />
+      <root url="jar://D:/TestPic/FileTomov/images/jmf-2_1_1e-alljava/JMF-2.1.1e/lib/jmf.jar!/" />
+      <root url="jar://D:/TestPic/FileTomov/images/jmf-2_1_1e-alljava/JMF-2.1.1e/lib/mediaplayer.jar!/" />
+      <root url="jar://D:/TestPic/FileTomov/images/jmf-2_1_1e-alljava/JMF-2.1.1e/lib/multiplayer.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

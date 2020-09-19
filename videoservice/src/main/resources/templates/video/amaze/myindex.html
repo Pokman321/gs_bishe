@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="video/amaze/header::head-fragment"></head>
+<body id="video">
+<div th:replace="video/amaze/header::nav-fragment"></div>
+<div th:replace="video/amaze/header::header-fragment"></div>
+<div class="am-g am-g-fixed video-fixed">
+    <div th:replace="video/amaze/myvideo-list::video-list-fragment"></div>
+    <div th:replace="video/amaze/side::side-fragment"></div>
+</div>
+<footer th:replace="video/amaze/footer::footer-fragment"></footer>
+</body>
+<script th:src="@{/video/plugins/jquery/jquery.min.js}"></script>
+<script th:src="@{/video/plugins/search/search.js}"></script>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div>
+    <button class="btn btn-danger" th:onclick="deleteVideo()" ><i
+            class="fa fa-trash-o"></i>&nbsp;删除
+    </button>
+
+
+</div>
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="card card-primary card-outline">
+            <div class="card-header">
+                <h3 class="card-title">发布文章</h3>
+            </div>
+
+            <button class="btn btn-info" id="domotButton">
+                &nbsp;开始计算
+            </button>
+
+            <div class="card-body">
+                <!-- 几个基础的输入框，名称、分类等输入框 -->
+<!--                <form id="videoForm" onsubmit="return false;" action="/myvideoedit/upload/ajaxtest2">-->
+                <form id="videoForm"  action="/myvideoedit/upload/ajaxtest2">
+                    <div class="form-group" style="display:flex;">
+                        <input type="hidden" id="videoId" name="videoId" th:value="${video!=null and video.videoId!=null }?${video.videoId}: 0">
+                        <input type="text" class="form-control col-sm-6" id="videoPath" name="videoPath"
+                               placeholder="*请输入视频路径" readonly="readonly"
+                               th:value="${video!=null and video.videoPath!=null }?${video.videoPath}: ''"
+                               required="false">
+                        &nbsp;&nbsp;
+<!--                        <input type="text" class="form-control" id="videoTime" name="videoTime"-->
+<!--                               placeholder="请输入视频时间"-->
+<!--                               th:value="${video!=null and video.videoTime!=null }?${video.videoTime}: ''"-->
+<!--                               style="width: 100%;">-->
+                        <input type="submit" value="保存">
+                    </div>
+
+
+                </form>
+            </div>
+
+        </div>
+    </div><!-- /.container-fluid -->
+</div>
+<!-- jQuery -->
+<script th:src="@{/admin/plugins/jquery/jquery.min.js}"></script>
+<!-- jQuery UI 1.11.4 -->
+<script th:src="@{/admin/plugins/jQueryUI/jquery-ui.min.js}"></script>
+<script th:src="@{/admin/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
+<script th:src="@{/admin/plugins/sweetalert/sweetalert.min.js}"></script>
+<script th:src="@{/video/dist/js/video.js}"></script>
+</html>

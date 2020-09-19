@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="blog-list-fragment" class="am-u-lg-8 am-u-sm-12">
+    <main class="articles-list">
+        <div>
+            <th:block th:if="${null != cameraPageResult}">
+                <th:block th:each="camera,iterStat : ${cameraPageResult.list}">
+                    <article class="am-g blog-entry-article">
+                        <div class="am-u-lg-6 am-u-lg-12 am-u-sm-12 blog-entry-text post-preview">
+                            <div class="topic-header">
+                                <div class="pull-left">
+                                    <div class="blog-flex-center">
+
+                                        <div class="author-lockup blog-flex1">
+                                            <a class="link" href="javascript:;"
+                                               th:text="${camera.userName}"></a>
+                                            <span class="in">in</span>
+                                            <span class="category-name">
+                                <a class="category-name" rel="tag" th:href="@{'/category/' + ${camera.cameraCategoryName}}"
+                                   th:utext="${camera.cameraCategoryName}">
+                                    </a>
+                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <span class="pull-right time pc_time"
+                                      th:text="${#dates.format(camera.cameraTime, 'yyyy-MM-dd')}">2019-01</span>
+                            </div>
+                            <h1 class="post-index-title"><a itemtype="url" th:href="@{'/camera/' + ${camera.cameraId}}">
+                                <th:block th:text="${camera.cameraName}"></th:block>
+                            </a>
+                            </h1>
+                            <div class="post-content-preview article-body">
+                                <a th:href="@{'/camera/' + ${camera.cameraId}}">
+                                    <img th:src="@{${camera.cameraCoverImage}}" alt=""></a>
+                            </div>
+                            <div class="row">
+
+                                <button class="btn btn-danger" th:onclick="'deleteVideo('+${camera.cameraId}+');'" ><i
+                                        class="fa fa-trash-o"></i>&nbsp;删除
+                                </button>
+                                <!--                                <button class="btn btn-danger" th:onclick="'updatemyVideo('+${camera.cameraId}+');'"><i-->
+                                <button class="btn btn-danger" th:href="@{'/mycamera/'+${camera.cameraId}}"><i
+                                        class="fa fa-trash-o"></i>&nbsp;重新编辑
+                                </button>
+                            </div>
+
+
+                            <div class="clearfix topic-footer">
+                                <span class="pull-left time mobile_time">2020-07</span>
+                            </div>
+                    </article>
+                </th:block>
+            </th:block>
+            <th:block th:if="${null != cameraPageResult}">
+                <ul class="am-pagination">
+                    <li th:class="${cameraPageResult.currPage==1}?'disabled' : 'am-pagination-prev'"><a
+                            th:href="@{${cameraPageResult.currPage==1}?'##':'/page/' + ${cameraPageResult.currPage-1}}">&laquo;</a>
+                    </li>
+                    <li th:if="${cameraPageResult.currPage-3 >=1}"><a
+                            th:href="@{'/page/' + ${cameraPageResult.currPage-3}}"
+                            th:text="${cameraPageResult.currPage -3}">1</a></li>
+                    <li th:if="${cameraPageResult.currPage-2 >=1}"><a
+                            th:href="@{'/page/' + ${cameraPageResult.currPage-2}}"
+                            th:text="${cameraPageResult.currPage -2}">1</a></li>
+                    <li th:if="${cameraPageResult.currPage-1 >=1}"><a
+                            th:href="@{'/page/' + ${cameraPageResult.currPage-1}}"
+                            th:text="${cameraPageResult.currPage -1}">1</a></li>
+                    <li class="active"><a href="#" th:text="${cameraPageResult.currPage}">1</a></li>
+                    <li th:if="${cameraPageResult.currPage+1 <=cameraPageResult.totalPage}"><a
+                            th:href="@{'/page/' + ${cameraPageResult.currPage+1}}"
+                            th:text="${cameraPageResult.currPage +1}">1</a></li>
+                    <li th:if="${cameraPageResult.currPage+2 <=cameraPageResult.totalPage}"><a
+                            th:href="@{'/page/' + ${cameraPageResult.currPage+2}}"
+                            th:text="${cameraPageResult.currPage +2}">1</a></li>
+                    <li th:if="${cameraPageResult.currPage+3 <=cameraPageResult.totalPage}"><a
+                            th:href="@{'/page/' + ${cameraPageResult.currPage+3}}"
+                            th:text="${cameraPageResult.currPage +3}">1</a></li>
+                    <li th:class="${cameraPageResult.currPage==cameraPageResult.totalPage}?'disabled' : ''">
+                        <a
+                                th:href="@{${cameraPageResult.currPage==cameraPageResult.totalPage}?'##' : '/page/' + ${cameraPageResult.currPage+1}}">&raquo;</a>
+                    </li>
+                </ul>
+            </th:block>
+        </div>
+    </main>
+</div>
+<script th:src="@{/camera/dist/js/camera.js}"></script>
+</html>

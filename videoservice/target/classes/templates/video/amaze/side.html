@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="side-fragment" class="am-u-lg-4 am-u-sm-12 am-u-lg-offset-0 am-u-sm-offset-0 sidebar-container">
+    <section>
+        <section>
+            <div class="sidebar-header">
+                <span class="sidebar-header-title">
+                    搜索视频
+                </span>
+            </div>
+            <div class="sidebar-search">
+                <form method="get" onsubmit="return false;" accept-charset="utf-8">
+                    <div class="search-input">
+                        <input type="text" name="keyword" id="searchbox" placeholder="输入关键字搜索">
+                        <button type="submit" class="search-submit" onclick="search()"></button>
+                        <div>
+                </form>
+            </div>
+        </section>
+        
+        <section>
+            <div class="sidebar-header">
+                <span class="sidebar-header-title">
+                    最新发布
+                </span>
+            </div>
+            <div class="sidebar-list">
+                <ul class="sidebar-list-body sidebar-list-items">
+                    <th:block th:if="${null != newVideos}">
+                        <th:block th:each="newVideo : ${newVideos}">
+                            <li class="sidebar-list-item"><a th:href="@{'/video/' + ${newVideo.videoId}}"
+                                                             class="tag tooltipped tooltipped-n">
+                                <th:block th:text="${newVideo.videoName}"></th:block>
+                            </a></li>
+                        </th:block>
+                    </th:block>
+                </ul>
+            </div>
+        </section>
+        <section>
+            <div class="sidebar-header">
+                <span class="sidebar-header-title">
+                    点击最多
+                </span>
+            </div>
+            <main class="sidebar-lists">
+                <ul>
+                    <th:block th:if="${null != hotVideos}">
+                        <th:block th:each="hotVideo : ${hotVideos}">
+                            <li class="sidebar-list-item"><a class="tag tooltipped tooltipped-n"
+                                                             th:href="@{'/video/' + ${hotVideo.videoId}}">
+                                <th:block th:text="${hotVideo.video}"></th:block>
+                            </a></li>
+                        </th:block>
+                    </th:block>
+                </ul>
+            </main>
+        </section>
+</div>
+</html>

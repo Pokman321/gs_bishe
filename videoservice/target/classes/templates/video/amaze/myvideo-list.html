@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="blog-list-fragment" class="am-u-lg-8 am-u-sm-12">
+    <main class="articles-list">
+        <div>
+            <th:block th:if="${null != videoPageResult}">
+                <th:block th:each="video,iterStat : ${videoPageResult.list}">
+                    <article class="am-g blog-entry-article">
+                        <div class="am-u-lg-6 am-u-lg-12 am-u-sm-12 blog-entry-text post-preview">
+                            <div class="topic-header">
+                                <div class="pull-left">
+                                    <div class="blog-flex-center">
+                                        <div class="blog-flex0">
+                                            <img th:src="@{${video.userAvatar}}" alt=""
+                                                 class="link avatar avatar-image">
+                                        </div>
+                                        <div class="author-lockup blog-flex1">
+                                            <a class="link" href="javascript:;"
+                                               th:text="${video.userName}"></a>
+                                            <span class="in">in</span>
+                                            <span class="category-name">
+                                <a class="category-name" rel="tag" th:href="@{'/category/' + ${video.cameraCategoryName}}"
+                                   th:utext="${video.cameraCategoryName}">
+                                    </a>
+                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <span class="pull-right time pc_time"
+                                      th:text="${#dates.format(video.videoTime, 'yyyy-MM-dd')}">2019-01</span>
+                            </div>
+                            <h1 class="post-index-title"><a itemtype="url" th:href="@{'/video/' + ${video.videoId}}">
+                                <th:block th:text="${video.videoName}"></th:block>
+                            </a>
+                            </h1>
+                            <div class="post-content-preview article-body">
+                                <a th:href="@{'/video/' + ${video.videoId}}">
+                                    <img th:src="@{${video.videoCoverImage}}" alt=""></a>
+                            </div>
+                            <div class="row">
+
+                                <button class="btn btn-danger" th:onclick="'deleteVideo('+${video.videoId}+');'" ><i
+                                        class="fa fa-trash-o"></i>&nbsp;删除
+                                </button>
+                                <!--                                <button class="btn btn-danger" th:onclick="'updatemyVideo('+${video.videoId}+');'"><i-->
+                                <button class="btn btn-danger" th:href="@{'/myvideo/'+${video.videoId}}"><i
+                                        class="fa fa-trash-o"></i>&nbsp;重新编辑
+                                </button>
+                            </div>
+
+
+                            <div class="clearfix topic-footer">
+                                <span class="pull-left time mobile_time">2020-07</span>
+                            </div>
+                    </article>
+                </th:block>
+            </th:block>
+            <th:block th:if="${null != videoPageResult}">
+                <ul class="am-pagination">
+                    <li th:class="${videoPageResult.currPage==1}?'disabled' : 'am-pagination-prev'"><a
+                            th:href="@{${videoPageResult.currPage==1}?'##':'/page/' + ${videoPageResult.currPage-1}}">&laquo;</a>
+                    </li>
+                    <li th:if="${videoPageResult.currPage-3 >=1}"><a
+                            th:href="@{'/page/' + ${videoPageResult.currPage-3}}"
+                            th:text="${videoPageResult.currPage -3}">1</a></li>
+                    <li th:if="${videoPageResult.currPage-2 >=1}"><a
+                            th:href="@{'/page/' + ${videoPageResult.currPage-2}}"
+                            th:text="${videoPageResult.currPage -2}">1</a></li>
+                    <li th:if="${videoPageResult.currPage-1 >=1}"><a
+                            th:href="@{'/page/' + ${videoPageResult.currPage-1}}"
+                            th:text="${videoPageResult.currPage -1}">1</a></li>
+                    <li class="active"><a href="#" th:text="${videoPageResult.currPage}">1</a></li>
+                    <li th:if="${videoPageResult.currPage+1 <=videoPageResult.totalPage}"><a
+                            th:href="@{'/page/' + ${videoPageResult.currPage+1}}"
+                            th:text="${videoPageResult.currPage +1}">1</a></li>
+                    <li th:if="${videoPageResult.currPage+2 <=videoPageResult.totalPage}"><a
+                            th:href="@{'/page/' + ${videoPageResult.currPage+2}}"
+                            th:text="${videoPageResult.currPage +2}">1</a></li>
+                    <li th:if="${videoPageResult.currPage+3 <=videoPageResult.totalPage}"><a
+                            th:href="@{'/page/' + ${videoPageResult.currPage+3}}"
+                            th:text="${videoPageResult.currPage +3}">1</a></li>
+                    <li th:class="${videoPageResult.currPage==videoPageResult.totalPage}?'disabled' : ''">
+                        <a
+                                th:href="@{${videoPageResult.currPage==videoPageResult.totalPage}?'##' : '/page/' + ${videoPageResult.currPage+1}}">&raquo;</a>
+                    </li>
+                </ul>
+            </th:block>
+        </div>
+    </main>
+</div>
+<script th:src="@{/video/dist/js/myvideo.js}"></script>
+</html>

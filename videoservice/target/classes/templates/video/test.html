@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+
+<head>
+
+    <meta charset="utf-8">
+
+    <th:block th:include="include :: header('视频展示')"/>
+
+</head>
+
+<body>
+
+<h2>MOT结果展示</h2>
+
+<video width="960" height="640" type="video/mp4" controls autoplay>
+
+    <!--/*@thymesVar id="video_path" type=""*/-->
+    <source th:src="${video_path}" type="video/mp4">
+
+    <p>如果你播放不了该视频，
+
+        那是你的设备不支持该文件格式</p>
+
+
+
+</video>
+
+</body>
+
+</html>

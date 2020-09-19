@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+<!--    <context:component-scan base-package="com.gs.demo">-->
+<!--        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>-->
+<!--    </context:component-scan>-->
+
+    <context:property-placeholder location="classpath:httpclient.properties"/>
+
+    <!-- 定义连接管理器 -->
+    <bean id="connectionManager"
+          class="org.apache.http.impl.conn.PoolingHttpClientConnectionManager">
+        <!-- 最大连接数 -->
+        <property name="maxTotal" value="${http.maxTotal}" />
+        <property name="defaultMaxPerRoute" value="${http.defaultMaxPerRoute}" />
+    </bean>
+
+    <!-- 定义Httpclient构造器 -->
+    <bean id="httpClientBuilder" class="org.apache.http.impl.client.HttpClientBuilder">
+        <property name="connectionManager" ref="connectionManager" />
+    </bean>
+    <!--定义httpClient对象，该bean一定是多例的 -->
+    <bean id="httpClient" class="org.apache.http.impl.client.CloseableHttpClient"
+          factory-bean="httpClientBuilder" factory-method="build" scope="prototype"></bean>
+    <!--定义requestConfig构建器 -->
+    <bean id="requestConfigBuilder" class="org.apache.http.client.config.RequestConfig.Builder">
+        <!--设置创建连接的最长时间 -->
+        <property name="connectTimeout" value="${http.connectTimeout}" />
+        <!--从连接池中获取到连接的最长时间 -->
+        <property name="connectionRequestTimeout" value="${http.connectionRequestTimeout}" />
+        <!--数据传输的最长时间 -->
+        <property name="socketTimeout" value="${http.socketTimeout}" />
+    </bean>
+    <!--请求参数对象 -->
+    <bean class="org.apache.http.client.config.RequestConfig"
+          factory-bean="requestConfigBuilder" factory-method="build"></bean>
+    <!--定期清理无效连接 ,com.baidu.utils这个链接可以填写你自己不需要的无效链接-->
+<!--    <bean class="com.gs.demo.Service.IdleConnectionEvictor"-->
+<!--          destroy-method="shutdown">-->
+<!--        <constructor-arg index="0" ref="connectionManager" />-->
+<!--    </bean>-->
+
+
+</beans>

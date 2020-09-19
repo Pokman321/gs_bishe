@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.de.dao.CameraCategoryMapper">
+    <resultMap id="BaseResultMap" type="com.de.entity.CameraCategory">
+        <id column="category_id" jdbcType="INTEGER" property="categoryId"/>
+        <result column="category_name" jdbcType="VARCHAR" property="categoryName"/>
+        <result column="category_icon" jdbcType="VARCHAR" property="categoryIcon"/>
+        <result column="has_camera_num" jdbcType="INTEGER" property="hasCameraNum"/>
+        <result column="has_video_num" jdbcType="INTEGER" property="hasVideoNum"/>
+        <result column="is_deleted" jdbcType="TINYINT" property="isDeleted"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    category_id, category_name, category_icon, has_camera_num,has_video_num, is_deleted, create_time
+  </sql>
+    <select id="findCategoryList" parameterType="Map" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from tb_camera_category
+        where is_deleted=0
+        order by create_time desc
+        <if test="start!=null and limit!=null">
+            limit #{start},#{limit}
+        </if>
+    </select>
+
+    <select id="getTotalCategories" parameterType="Map" resultType="int">
+    select count(*)  from tb_camera_category
+    where is_deleted=0
+    </select>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from tb_camera_category
+        where category_id = #{categoryId,jdbcType=INTEGER} AND is_deleted = 0
+    </select>
+    <select id="selectByCategoryIds" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from tb_camera_category
+        where category_id IN
+        <foreach collection="categoryIds" item="item" index="index"
+                 open="(" separator="," close=")">#{item}
+        </foreach>
+        AND is_deleted = 0
+    </select>
+
+    <select id="selectByCategoryName" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from tb_camera_category
+        where category_name = #{categoryName,jdbcType=VARCHAR} AND is_deleted = 0
+    </select>
+    <update id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    UPDATE tb_camera_category SET  is_deleted = 1
+    where category_id = #{categoryId,jdbcType=INTEGER} AND is_deleted = 0
+    </update>
+    <update id="deleteBatch">
+        update tb_camera_category
+        set is_deleted=1 where category_id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </update>
+    <insert id="insert" parameterType="com.de.entity.CameraCategory">
+    insert into tb_camera_category (category_id, category_name, category_icon,
+      has_camera_num,has_video_num, is_deleted, create_time
+      )
+    values (#{categoryId,jdbcType=INTEGER}, #{categoryName,jdbcType=VARCHAR}, #{categoryIcon,jdbcType=VARCHAR},
+      #{hasCameraNum,jdbcType=INTEGER},#{hasVideoNum,jdbcType=INTEGER}, #{isDeleted,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+    <insert id="insertSelective" parameterType="com.de.entity.CameraCategory">
+        insert into tb_camera_category
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="categoryId != null">
+                category_id,
+            </if>
+            <if test="categoryName != null">
+                category_name,
+            </if>
+            <if test="categoryIcon != null">
+                category_icon,
+            </if>
+            <if test="hasCameraNum != null">
+                has_camera_num,
+            </if>
+            <if test="hasVideoNum != null">
+                has_video_num,
+            </if>
+            <if test="isDeleted != null">
+                is_deleted,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="categoryId != null">
+                #{categoryId,jdbcType=INTEGER},
+            </if>
+            <if test="categoryName != null">
+                #{categoryName,jdbcType=VARCHAR},
+            </if>
+            <if test="categoryIcon != null">
+                #{categoryIcon,jdbcType=VARCHAR},
+            </if>
+            <if test="hasCameraNum != null">
+                #{hasCameraNum,jdbcType=INTEGER},
+            </if>
+            <if test="hasVideoNum != null">
+                #{hasVideoNum,jdbcType=INTEGER},
+            </if>
+            <if test="isDeleted != null">
+                #{isDeleted,jdbcType=TINYINT},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.de.entity.CameraCategory">
+        update tb_camera_category
+        <set>
+            <if test="categoryName != null">
+                category_name = #{categoryName,jdbcType=VARCHAR},
+            </if>
+            <if test="categoryIcon != null">
+                category_icon = #{categoryIcon,jdbcType=VARCHAR},
+            </if>
+            <if test="hasCameraNum != null">
+                has_camera_num = #{hasCameraNum,jdbcType=INTEGER},
+            </if>
+            <if test="hasVideoNum != null">
+                has_video_num = #{hasVideoNum,jdbcType=INTEGER},
+            </if>
+            <if test="isDeleted != null">
+                is_deleted = #{isDeleted,jdbcType=TINYINT},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where category_id = #{categoryId,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.de.entity.CameraCategory">
+    update tb_camera_category
+    set category_name = #{categoryName,jdbcType=VARCHAR},
+      category_icon = #{categoryIcon,jdbcType=VARCHAR},
+      has_camera_num = #{hasCameraNum,jdbcType=INTEGER},
+      has_video_num = #{hasVideoNum,jdbcType=INTEGER},
+      is_deleted = #{isDeleted,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where category_id = #{categoryId,jdbcType=INTEGER}
+    </update>
+</mapper>

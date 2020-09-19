@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.de.mysearch.dao.EsProductDao">
+    <resultMap id="BaseResultMap" type="com.de.mysearch.domain.EsProduct">
+        <id column="video_id" jdbcType="INTEGER" property="videoId"/>
+        <result column="user_name" jdbcType="VARCHAR" property="userName"/>
+        <result column="video_name" jdbcType="VARCHAR" property="videoName"/>
+        <result column="video_cover_image" jdbcType="VARCHAR" property="videoCoverImage"/>
+        <result column="video_path" jdbcType="VARCHAR" property="videoPath"/>
+        <result column="result_path" jdbcType="VARCHAR" property="resultPath"/>
+        <result column="has_result" jdbcType="TINYINT" property="hasResult"/>
+        <!--        <result column="camera_status" jdbcType="TINYINT" property="cameraStatus"/>-->
+        <result column="video_time" jdbcType="TIMESTAMP" property="videoTime"/>
+        <result column="result_time" jdbcType="TIMESTAMP" property="resultTime"/>
+        <result column="camera_category_id" jdbcType="INTEGER" property="cameraCategoryId"/>
+        <result column="camera_category_name" jdbcType="VARCHAR" property="cameraCategoryName"/>
+        <result column="video_views" jdbcType="INTEGER" property="videoViews"/>
+        <result column="is_show" jdbcType="TINYINT" property="isShow"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+    video_id,user_name,video_name,video_cover_image,video_path,result_path,has_result,
+    video_time,result_time,camera_category_id,camera_category_name,video_views,is_show
+  </sql>
+
+    <select id="getAllEsProductList" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from tb_update
+        where is_show=1
+        <if test="videoId!=null">
+            and video_id = #{videoId,jdbcType=INTEGER}
+        </if>
+    </select>
+</mapper>
