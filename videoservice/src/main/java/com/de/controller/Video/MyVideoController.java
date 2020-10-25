@@ -55,7 +55,7 @@ public class MyVideoController {
 
     @GetMapping({"/ownpage/{pageNum}"})
     public String ownpage(HttpServletRequest request, @PathVariable("pageNum") int pageNum, HttpSession session){
-        PageResult videoPageResult = videoService.getOwnVideoForIndexPage(pageNum,(String)session.getAttribute("loginUser"));
+        PageResult videoPageResult = videoService.getOwnVideoForIndexPage(pageNum,(String)session.getAttribute("loginUserName"));
         if (videoPageResult == null) {
             System.out.println("还没有结果");
             return "error/error_404";

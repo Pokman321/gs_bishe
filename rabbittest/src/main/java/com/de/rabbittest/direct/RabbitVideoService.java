@@ -5,8 +5,8 @@ import com.de.rabbittest.entity.VideoMqMessage;
 import com.de.rabbittest.entity.VideoNotice;
 import com.de.rabbittest.entity.MessageBuilder;
 import com.de.rabbittest.utils.GsonUtil;
-import com.de.rabbittest.utils.MyResult;
-import com.de.rabbittest.utils.ResultGenerator;
+import com.de.util.MyResult;
+import com.de.util.ResultGenerator;
 import com.rabbitmq.client.AMQP;
 import com.rabbitmq.client.Channel;
 import jdk.internal.jline.internal.Log;
@@ -55,7 +55,8 @@ public class RabbitVideoService implements ChannelAwareMessageListener {
     private RabbitAdmin rabbitAdmin;
 
     //获取消息队列中的消息数量，判断是否适合在线等待
-    public Map<String,Integer> getMessageCount() throws IOException {
+//    public Map<String,Integer> getMessageCount() throws IOException {
+    public MyResult getMessageCount() throws IOException {
 //    public void getMessageCount() throws IOException {
         String cmd = "cmd /c rabbitmqctl list_queues";
 //        String cmd = "python E:\\leetcode\\Ali_test\\1.py";
@@ -101,10 +102,14 @@ public class RabbitVideoService implements ChannelAwareMessageListener {
             }
 
         }
-        Map<String,Integer> message_map = new HashMap<>();
-        message_map.put("service",cpu_message);
-        message_map.put("algorithm",gpu_message);
-        return message_map;
+//        Map<String,Integer> message_map = new HashMap<>();
+//        message_map.put("service",cpu_message);
+//        message_map.put("algorithm",gpu_message);
+
+        MyResult result = ResultGenerator.genSuccessResult();
+
+        result.setData(gpu_message);
+        return result;
 
 //        System.out.println(cpu_message+"  "+gpu_message);
 //        float res_score = Float.parseFloat(line);
@@ -153,10 +158,10 @@ public class RabbitVideoService implements ChannelAwareMessageListener {
             Log.error("-------------------- checkNotice error : videoId is null");
             return Boolean.FALSE;
         }
-        if(videoNotice.getVideoName()==null){
-            Log.error("-------------------- checkNotice error : videoName is null");
-            return Boolean.FALSE;
-        }
+//        if(videoNotice.getVideoName()==null){
+//            Log.error("-------------------- checkNotice error : videoName is null");
+//            return Boolean.FALSE;
+//        }
         if(videoNotice.getVideoTime()==null){
             Log.error("-------------------- checkNotice error : videoTime is null");
             return Boolean.FALSE;

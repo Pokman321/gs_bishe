@@ -5,15 +5,23 @@ import com.de.rabbittest.direct.VideoSender;
 import com.de.rabbittest.direct.RabbitVideoService;
 import com.de.rabbittest.entity.VideoNotice;
 //import com.de.service.AdminUserService;
+import com.de.util.MyCameraUtils;
+import com.de.util.MyResult;
+import com.de.util.ResultGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeoutException;
 
@@ -22,7 +30,7 @@ import java.util.concurrent.TimeoutException;
  * @date 2020/8/3 - 20:10
  */
 @Controller
-@RequestMapping("/admin")
+@RequestMapping("/rabbit")
 public class MyProducer {
 
     @Autowired
@@ -45,7 +53,7 @@ public class MyProducer {
 
     @GetMapping("/getmessage")
     @ResponseBody
-    public Map<String,Integer> getMessage() throws IOException {
+    public MyResult getMessage() throws IOException {
         return rabbitVideoService.getMessageCount();
 
     }
@@ -54,15 +62,15 @@ public class MyProducer {
     @PostMapping("/domot")
     @ResponseBody
 //    public MyResult domot() throws InterruptedException, IOException {
-    public void domot(@RequestParam("videoPath") String video_path,
-                      @RequestParam("userId") Integer userId,
+    public MyResult domot(@RequestParam("videoPath") String video_path,
                       @RequestParam("videoId") Integer videoId,
-                      @RequestParam("VideoTime") String videoTime)
-            throws InterruptedException, IOException, ParseException {
+                      @RequestParam("videoTime") String videoTime,
+                      HttpSession session, HttpServletRequest httpServletRequest)
+            throws InterruptedException, IOException, ParseException, URISyntaxException {
 //        MyResult result = videoSender.send("domot now!"+System.currentTimeMillis());
-
+        System.out.println("进入到domot中");
         VideoNotice videoNotice = new VideoNotice();
-        videoNotice.setUserId(userId);
+        videoNotice.setUserId((Integer) session.getAttribute("loginUserId"));
         videoNotice.setVideoId(videoId);
         videoNotice.setVideoPath(video_path);
 
@@ -72,11 +80,19 @@ public class MyProducer {
 
         videoNotice.setVideoTime(videoTime1);
 
-
-
-
         rabbitVideoService.send(videoNotice);
-//        return result;
+
+
+        MyResult result = ResultGenerator.genSuccessResult();
+
+        Map<String,String> resultdata = new HashMap<>();
+        resultdata.put("resultPath",MyCameraUtils.getHost(new URI(httpServletRequest.getRequestURL() + "")) + "/upload/" + "20201024_21284845.mp4");
+
+        resultdata.put("resultTime",simpleDateFormat.format(new Date(System.currentTimeMillis())));
+
+        result.setData(resultdata);
+
+        return result;
     }
 
     @PostMapping("/domotoffline")

@@ -3,7 +3,11 @@ spring:
     #    url: jdbc:mysql://localhost:3306/mytest?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
 #    url: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
 #    url: jdbc:mysql://192.168.137.25:3306/mot?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
-    url: jdbc:mysql://10.0.0.4:3306/mot?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+#    url: jdbc:mysql://10.0.0.4:3306/mot?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+
+    url: jdbc:mysql://10.135.162.238:3306/mot?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+#    url: jdbc:mysql://10.0.0.7:3306/mot?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+#    url: jdbc:mysql://192.168.1.26:3306/mot?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
 #    url: jdbc:mysql://172.20.10.2:3306/mot?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
     username: root
     password: 528196

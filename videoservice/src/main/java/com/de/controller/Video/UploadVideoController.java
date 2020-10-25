@@ -198,7 +198,7 @@ public class UploadVideoController {
     @PostMapping("/domot")
     @ResponseBody
 //    public MyResult domot() throws InterruptedException, IOException {
-    public com.de.rabbittest.utils.MyResult domot(@RequestParam("videoPath") String video_path,
+    public MyResult domot(@RequestParam("videoPath") String video_path,
                                                   @RequestParam("userId") Integer userId,
                                                   @RequestParam("videoId") Integer videoId,
                                                   @RequestParam("VideoTime") String videoTime)
@@ -216,7 +216,7 @@ public class UploadVideoController {
 
         videoNotice.setVideoTime(videoTime1);
 
-        com.de.rabbittest.utils.MyResult result = rabbitVideoService.send(videoNotice);
+        MyResult result = rabbitVideoService.send(videoNotice);
         if(result.getResultCode()==200){
             result.setData(rabbitVideoService.getQueueCount());
         }

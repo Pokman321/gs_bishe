@@ -74,33 +74,169 @@ $(function () {
 
     $('#domotButton').click(function () {
         isMOT=0;
-        document.getElementById("domotButton").setAttribute("disabled", true);
+        data = {
+            "videoId": $('#videoId').val(),
+            "videoPath": $('#videoPath').val(),
+            "videoTime": $('#videoTime').val()
+
+        };
+        // document.getElementById("domotButton").setAttribute("disabled", true);
         $.ajax({
             type:"get",
-            url:"/myvideo/upload/ajaxtest",
-            data:{cameraId:"0"},
+            // url:"/myvideo/upload/ajaxtest",
+            url:"/rabbit/getmessage",
+            data:{},
             dataType:"json",
             success: function (result) {
-                document.getElementById("domotButton").removeAttribute("disabled");
-                if (result.resultCode==200){
-                    isMOT=1;
+                // document.getElementById("domotButton").removeAttribute("disabled");
+                if (result.resultCode == 200) {
+                    var rank = result.data;
 
-                    var formFieldresultpath = document.getElementById("resultPath");
-                    formFieldresultpath.value = r.data.resultpath;
+                    // swal({
+                    //     title: 'Are you sure?',
+                    //     text: 'You will not be able to recover this imaginary file!',
+                    //     type: 'warning',
+                    //     showCancelButton: true,
+                    //     confirmButtonText: 'Yes, delete it!',
+                    //     cancelButtonText: 'No, keep it',
+                    // }).then(function(isConfirm) {
+                    //     if (isConfirm === true) {
+                    //         swal(
+                    //             'Deleted!',
+                    //             'Your imaginary file has been deleted.',
+                    //             'success'
+                    //         );
+                    //
+                    //     } else if (isConfirm === false) {
+                    //         swal(
+                    //             'Cancelled',
+                    //             'Your imaginary file is safe :)',
+                    //             'error'
+                    //         );
+                    //
+                    //     } else {
+                    //         // Esc, close button or outside click
+                    //         // isConfirm is undefined
+                    //     }
+                    // });
 
-                    var formFieldresulttime = document.getElementById("resultTime");
-                    formFieldresulttime.value = r.data.resulttime;
+                    // swal(
+                    //     {title:"您确定要删除这条信息吗",
+                    //         text:"删除后将无法恢复，请谨慎操作！",
+                    //         type:"warning",
+                    //         showCancelButton:true,
+                    //         confirmButtonColor:"#DD6B55",
+                    //         confirmButtonText:"是的，我要删除！",
+                    //         cancelButtonText:"让我再考虑一下…",
+                    //         closeOnConfirm:false,
+                    //         closeOnCancel:false
+                    //     },
+                    //
+                    //     function(isConfirm)
+                    //     {
+                    //         console.log("1111111")
+                    //         if(isConfirm)
+                    //         {
+                    //             swal({title:"删除成功！",
+                    //                 text:"您已经永久删除了这条信息。",
+                    //                 type:"success"},function(){window.location="www.baidu.com"})
+                    //         }
+                    //         else{
+                    //             swal({title:"已取消",
+                    //                 text:"您取消了删除操作！",
+                    //                 type:"error"})
+                    //         }
+                    //     }
+                    // )
 
-                    $("#videoresult").attr("src", result.data);
-                    $("#videoresult").attr("style", "width: 200px;display:block;");
-                    swal("执行完成",{
-                        icon:"success"
+                    swal({
+                        title: "等待人数提示",
+                        text: "当前需要等待" + rank,
+                        icon : "success",
+                        buttons : {
+                            button1 : {
+                                text : "在线等待",
+                                value : true,
+                            },
+                            button2 : {
+                                text : "离线提交",
+                                value : false,
+                            }
+                        },
+                    }).then(function(value) {   //这里的value就是按钮的value值，只要对应就可以啦
+                        if (value) {
+                            $.ajax({
+                                type: "post",
+                                url: "/rabbit/domot",
+                                dataType: "json",
+                                data: data,
+                                success: function (result2) {
+                                    if (result2.resultCode == 200) {
+                                        document.getElementById("domotButton").innerText("开始计算")
+                                        document.getElementById("domotButton").removeAttribute("disable")
+                                        $("#videoresult").attr("src", result2.data.resultPath);
+                                        $("#videoresult").attr("style", "width: 200px;display:block;");
+                                        var formFieldresultpath = document.getElementById("resultPath");
+                                        formFieldresultpath.value = result2.data.resultPath;
+
+                                        var formFieldresulttime = document.getElementById("resultTime");
+                                        formFieldresulttime.value = r.data.resultTime;
+                                    } else {
+                                        swal("计算错误", {icon: "error"});
+                                    }
+                                }
+                            })
+                        } else {
+                            window.location.href = "http://www.baidu.com"
+                        }
                     });
-                }
-                else{
+
+                    // swal({
+                    //         title: "等待人数提示",
+                    //         text: "当前需要等待" + rank,
+                    //         icon: "warning",
+                    //         showCancelButton: true,
+                    //         closeOnConfirm: false,
+                    //         buttons:true,
+                    //         dangerMode:true
+                    //         // confirmButtonText: "确 认",
+                    //         // showCancelButton: true,
+                    //         // confirmButtonColor: "#DD6B55",
+                    //         // confirmButtonText: "确认",
+                    //         // cancelButtonText: "取消",
+                    //         // closeOnConfirm: false,
+                    //         // closeOnCancel: false
+                    //     }).then(function (isConfirm) {
+                    //         console.log("1111")
+                    //         // document.getElementById("domotButton").innerText("正在处理")
+                    //         $.ajax({
+                    //             type: "post",
+                    //             url: "/rabbit/domot",
+                    //             dataType: "json",
+                    //             data: data,
+                    //             success: function (result2) {
+                    //                 if (result2.resultCode == 200) {
+                    //                     document.getElementById("domotButton").innerText("开始计算")
+                    //                     document.getElementById("domotButton").removeAttribute("disable")
+                    //                     $("#videoresult").attr("src", result2.data.resultPath);
+                    //                     $("#videoresult").attr("style", "width: 200px;display:block;");
+                    //                     var formFieldresultpath = document.getElementById("resultPath");
+                    //                     formFieldresultpath.value = result2.data.resultPath;
+                    //
+                    //                     var formFieldresulttime = document.getElementById("resultTime");
+                    //                     formFieldresulttime.value = r.data.resultTime;
+                    //                 } else {
+                    //                     swal("计算错误", {icon: "error"});
+                    //                 }
+                    //             }
+                    //         })
+                    // })
+
+
+                } else {
 
                     swal("执行失败", {
-                            icon: "error"
+                        icon: "error"
                     })
 
                 }
@@ -108,6 +244,44 @@ $(function () {
         })
 
     });
+
+    // $('#domotButton').click(function () {
+    //     isMOT=0;
+    //     document.getElementById("domotButton").setAttribute("disabled", true);
+    //     $.ajax({
+    //         type:"get",
+    //         // url:"/myvideo/upload/ajaxtest",
+    //         url:"/rabbit/getmessage",
+    //         data:{cameraId:"0"},
+    //         dataType:"json",
+    //         success: function (result) {
+    //             document.getElementById("domotButton").removeAttribute("disabled");
+    //             if (result.resultCode==200){
+    //                 isMOT=1;
+    //
+    //                 var formFieldresultpath = document.getElementById("resultPath");
+    //                 formFieldresultpath.value = r.data.resultpath;
+    //
+    //                 var formFieldresulttime = document.getElementById("resultTime");
+    //                 formFieldresulttime.value = r.data.resulttime;
+    //
+    //                 $("#videoresult").attr("src", result.data);
+    //                 $("#videoresult").attr("style", "width: 200px;display:block;");
+    //                 swal("执行完成",{
+    //                     icon:"success"
+    //                 });
+    //             }
+    //             else{
+    //
+    //                 swal("执行失败", {
+    //                     icon: "error"
+    //                 })
+    //
+    //             }
+    //         }
+    //     })
+    //
+    // });
 
     $('#getresultButton').click(function () {
 
