@@ -1,58 +1,78 @@
 package com.de.rabbittest.entity;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
+import java.io.Serializable;
 import java.util.Date;
-import java.util.StringJoiner;
 
 /**
- * @author gs
- * @date 2020/8/11 - 20:18
- */
-public class VideoNotice {
+@author gs
+@date 2020/10/31 - 15:33
+*/
 
+/**
+ * video_notice
+ */
+public class VideoNotice implements Serializable {
+    /**
+     * id
+     */
     private Integer id;
 
+    /**
+     * topicCode
+     */
     private String topicCode;
 
+    /**
+     * title
+     */
     private String title;
 
+    /**
+     * userId
+     */
     private Integer userId;
 
-    public Integer videoId;
+    /**
+     * videoId
+     */
+    private Integer videoId;
 
+    /**
+     * videoName
+     */
     private String videoName;
 
+    /**
+     * videoPath
+     */
     private String videoPath;
 
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
+    /**
+     * videoTime
+     */
     private Date videoTime;
 
+    /**
+     * isSend
+     */
     private Byte isSend;
 
+    /**
+     * isComplete
+     */
     private Byte isComplete;
 
+    /**
+     * isDelete
+     */
     private Byte isDelete;
 
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
+    /**
+     * noticeTime
+     */
     private Date noticeTime;
 
-
-    public Byte getIsSend() {
-        return isSend;
-    }
-
-    public void setIsSend(Byte isSend) {
-        this.isSend = isSend;
-    }
-
-    public Date getNoticeTime() {
-        return noticeTime;
-    }
-
-    public void setNoticeTime(Date noticeTime) {
-        this.noticeTime = noticeTime;
-    }
+    private static final long serialVersionUID = 1L;
 
     public Integer getId() {
         return id;
@@ -60,22 +80,6 @@ public class VideoNotice {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
-
-    public Integer getVideoId() {
-        return videoId;
-    }
-
-    public void setVideoId(Integer videoId) {
-        this.videoId = videoId;
     }
 
     public String getTopicCode() {
@@ -92,6 +96,22 @@ public class VideoNotice {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    public Integer getVideoId() {
+        return videoId;
+    }
+
+    public void setVideoId(Integer videoId) {
+        this.videoId = videoId;
     }
 
     public String getVideoName() {
@@ -118,6 +138,14 @@ public class VideoNotice {
         this.videoTime = videoTime;
     }
 
+    public Byte getIsSend() {
+        return isSend;
+    }
+
+    public void setIsSend(Byte isSend) {
+        this.isSend = isSend;
+    }
+
     public Byte getIsComplete() {
         return isComplete;
     }
@@ -134,21 +162,11 @@ public class VideoNotice {
         this.isDelete = isDelete;
     }
 
-    @Override
-    public String toString() {
-        return new StringJoiner(", ", VideoNotice.class.getSimpleName() + "[", "]")
-                .add("id=" + id)
-                .add("topicCode='" + topicCode + "'")
-                .add("title='" + title + "'")
-                .add("userId=" + userId)
-                .add("videoId=" + videoId)
-                .add("videoName='" + videoName + "'")
-                .add("videoPath='" + videoPath + "'")
-                .add("videoTime=" + videoTime)
-                .add("isSend=" + isSend)
-                .add("isComplete=" + isComplete)
-                .add("isDelete=" + isDelete)
-                .add("noticeTime=" + noticeTime)
-                .toString();
+    public Date getNoticeTime() {
+        return noticeTime;
+    }
+
+    public void setNoticeTime(Date noticeTime) {
+        this.noticeTime = noticeTime;
     }
 }

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="MyBatisCodeHelperDatasource">
+    <option name="projectProfile">
+      <ProjectProfile>
+        <option name="addSerializeUid" value="true" />
+        <option name="genSqlFilePath" value="$PROJECT_DIR$/rabbittest/src/main/java/com/de/rabbittest/entity" />
+        <option name="javaMapperPackage" value="com.de.rabbittest.dao" />
+        <option name="javaMapperPath" value="E:\Liao_java\gs_bishe\rabbittest\src\main\java" />
+        <option name="javaModelPackage" value="com.de.rabbittest.entity" />
+        <option name="javaModelPath" value="E:\Liao_java\gs_bishe\rabbittest\src\main\java" />
+        <option name="lastDatabaseCrudChooseModuleName" value="videoservice" />
+        <option name="mapperAnnotaion" value="true" />
+        <option name="moduleNameToPackageAndPathMap">
+          <map>
+            <entry key="rabbittest">
+              <value>
+                <UserPackageAndPathInfoByModule>
+                  <option name="javaMapperPackage" value="com.de.rabbittest.dao" />
+                  <option name="javaMapperPath" value="$PROJECT_DIR$/rabbittest/src/main/java" />
+                  <option name="javaModelPacakge" value="com.de.rabbittest.entity" />
+                  <option name="javaModelPath" value="$PROJECT_DIR$/rabbittest/src/main/java" />
+                  <option name="javaServiceInterfacePath" value="$PROJECT_DIR$/rabbittest/src/main/java" />
+                  <option name="javaServicePath" value="$PROJECT_DIR$/rabbittest/src/main/java" />
+                  <option name="xmlPackage" value="mapper" />
+                  <option name="xmlPath" value="$PROJECT_DIR$/rabbittest/src/main/resources" />
+                </UserPackageAndPathInfoByModule>
+              </value>
+            </entry>
+            <entry key="videoservice">
+              <value>
+                <UserPackageAndPathInfoByModule>
+                  <option name="javaMapperPackage" value="com.de.rabbittest.dao" />
+                  <option name="javaMapperPath" value="E:\Liao_java\gs_bishe\rabbittest\src\main\java" />
+                  <option name="javaModelPacakge" value="com.de.rabbittest.entity" />
+                  <option name="javaModelPath" value="E:\Liao_java\gs_bishe\rabbittest\src\main\java" />
+                  <option name="xmlPackage" value="mapper" />
+                  <option name="xmlPath" value="E:\Liao_java\gs_bishe\rabbittest\src\main\resources" />
+                </UserPackageAndPathInfoByModule>
+              </value>
+            </entry>
+          </map>
+        </option>
+        <option name="tableGenerateConfigs">
+          <map>
+            <entry key="mot:video_notice">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="id" />
+                  <option name="javaModelName" value="VideoNotice" />
+                  <option name="moduleName" value="videoservice" />
+                  <option name="sequenceColumn" value="" />
+                  <option name="sequenceId" value="" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+          </map>
+        </option>
+        <option name="xmlMapperPackage" value="mapper" />
+        <option name="xmlMapperPath" value="E:\Liao_java\gs_bishe\rabbittest\src\main\resources" />
+      </ProjectProfile>
+    </option>
+  </component>
+</project>

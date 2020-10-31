@@ -4,11 +4,16 @@ import com.de.dao.CameraMapper;
 import com.de.dao.CurCameraMapper;
 import com.de.dao.PersonMapper;
 import com.de.dao.VideoMapper;
-import com.de.entity.Camera;
-import com.de.entity.CurImage;
-import com.de.entity.Person;
-import com.de.entity.UpdateVideo;
+import com.de.entity.*;
 import com.de.rabbittest.controller.MyProducer;
+import com.de.rabbittest.dao.VideoMessageMapper;
+//import com.de.rabbittest.dao.VideoNoticeMapper;
+//import com.de.rabbittest.entity.VideoNotice;
+
+import com.de.dao.VideoNoticeMapper;
+import com.de.entity.VideoNotice;
+
+
 import com.de.util.PageQueryUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -41,6 +46,9 @@ public class PersonTest {
 
     @Autowired
     private VideoMapper videoMapper;
+
+    @Autowired
+    private VideoNoticeMapper videoNoticeMapper;
 
     @Test
     public void run1() throws Exception {
@@ -285,9 +293,13 @@ public class PersonTest {
         }
 //        System.out.println("----"+user);
 
-
     }
 
+    @Test
+    public void run16(){
+        VideoNotice i = videoNoticeMapper.selectByPrimaryKey(1);
+        System.out.println(i);
+    }
 
 
 
