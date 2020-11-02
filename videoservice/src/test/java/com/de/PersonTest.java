@@ -7,11 +7,11 @@ import com.de.dao.VideoMapper;
 import com.de.entity.*;
 import com.de.rabbittest.controller.MyProducer;
 import com.de.rabbittest.dao.VideoMessageMapper;
-//import com.de.rabbittest.dao.VideoNoticeMapper;
-//import com.de.rabbittest.entity.VideoNotice;
+import com.de.rabbittest.dao.VideoNoticeMapper;
+import com.de.rabbittest.entity.VideoNotice;
 
-import com.de.dao.VideoNoticeMapper;
-import com.de.entity.VideoNotice;
+//import com.de.dao.VideoNoticeMapper;
+//import com.de.entity.VideoNotice;
 
 
 import com.de.util.PageQueryUtil;

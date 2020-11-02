@@ -2,21 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0a12bbe9-a759-4636-8208-8274eaf7a10b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/MyBatisCodeHelperDatasource.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/common/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/delogs.log" beforeDir="false" afterPath="$PROJECT_DIR$/delogs.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mysearch/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/mysearch/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rabbittest/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/rabbittest/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rabbittest/src/main/java/com/de/rabbittest/entity/VideoNotice.java" beforeDir="false" afterPath="$PROJECT_DIR$/rabbittest/src/main/java/com/de/rabbittest/entity/VideoNotice.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rabbittest/src/main/resources/mapper/VideoMessageMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/rabbittest/src/main/resources/mapper/VideoMessageMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rabbittest/src/main/java/com/de/rabbittest/config/RabbitConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/rabbittest/src/main/java/com/de/rabbittest/config/RabbitConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rabbittest/src/main/java/com/de/rabbittest/controller/MyProducer.java" beforeDir="false" afterPath="$PROJECT_DIR$/rabbittest/src/main/java/com/de/rabbittest/controller/MyProducer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rabbittest/src/main/java/com/de/rabbittest/direct/RabbitVideoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/rabbittest/src/main/java/com/de/rabbittest/direct/RabbitVideoService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rabbittest/src/test/java/com/de/rabbittest/RabbittestApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/rabbittest/src/test/java/com/de/rabbittest/RabbittestApplicationTests.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/videoservice/delogs.log" beforeDir="false" afterPath="$PROJECT_DIR$/videoservice/delogs.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/videoservice/src/main/java/com/de/config/OtherConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/videoservice/src/main/java/com/de/config/OtherConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/videoservice/src/main/java/com/de/config/RabbitConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/videoservice/src/main/java/com/de/config/RabbitConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/videoservice/src/test/java/com/de/PersonTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/videoservice/src/test/java/com/de/PersonTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/videoservice/target/classes/templates/admin/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/videoservice/target/classes/templates/admin/header.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/videoservice/target/classes/templates/admin/sidebar.html" beforeDir="false" afterPath="$PROJECT_DIR$/videoservice/target/classes/templates/admin/sidebar.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/videoservice/target/classes/templates/video/amaze/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/videoservice/target/classes/templates/video/amaze/header.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/videoservice/target/classes/com/de/config/OtherConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/videoservice/target/classes/com/de/config/RabbitConfig$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/videoservice/target/classes/com/de/config/RabbitConfig$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/videoservice/target/classes/com/de/config/RabbitConfig.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/videoservice/target/test-classes/com/de/PersonTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/videoservice/target/test-classes/com/de/PersonTest.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -35,23 +38,7 @@
     <option name="HIDDEN_KINDS">
       <set />
     </option>
-    <expand>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="@10.135.162.238" type="feb32156:DbDataSourceImpl" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="@10.135.162.238" type="feb32156:DbDataSourceImpl" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="@10.135.162.238" type="feb32156:DbDataSourceImpl" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="mot: schema" type="76f4a085:MysqlImplModel$Schema" />
-      </path>
-    </expand>
+    <expand />
     <select />
   </component>
   <component name="FileTemplateManagerImpl">
@@ -121,6 +108,7 @@
       <recent name="E:\Liao_java\gs_bishe\videoservice\target\classes\templates\admin" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.de.rabbittest.config" />
       <recent name="com.de.rabbittest.dao" />
       <recent name="com.de.entity" />
       <recent name="com.de.util" />
@@ -130,7 +118,7 @@
       <recent name="E:\Liao_java\gs_bishe\videoservice" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.PersonTest.run16">
+  <component name="RunManager" selected="Spring Boot.Application">
     <configuration name="PersonTest.run13 (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="videoservice" />
       <extension name="coverage">
@@ -292,7 +280,7 @@
       <workItem from="1603460224028" duration="27281000" />
       <workItem from="1603613254026" duration="8037000" />
       <workItem from="1603645296507" duration="14861000" />
-      <workItem from="1604041235905" duration="8300000" />
+      <workItem from="1604041235905" duration="31636000" />
     </task>
     <task id="LOCAL-00001" summary="修改FilesToMov">
       <created>1600535448136</created>
@@ -308,7 +296,14 @@
       <option name="project" value="LOCAL" />
       <updated>1603637512545</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="修改notice第一次">
+      <created>1604129704272</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1604129704272</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -317,7 +312,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="修改FilesToMov" />
     <MESSAGE value="修改视频上传部分" />
-    <option name="LAST_COMMIT_MESSAGE" value="修改视频上传部分" />
+    <MESSAGE value="修改notice第一次" />
+    <option name="LAST_COMMIT_MESSAGE" value="修改notice第一次" />
   </component>
   <component name="WindowStateProjectService">
     <state x="345" y="52" key="#PersonTest.run13" timestamp="1599333563794">
@@ -346,78 +342,78 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1604129536118" />
-    <state x="372" y="5" key="CommitChangelistDialog2" timestamp="1603637505716">
+    <state x="372" y="5" key="CommitChangelistDialog2" timestamp="1604129699588">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="372" y="5" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1603637505716" />
+    <state x="372" y="5" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1604129699588" />
     <state width="458" height="466" key="DebuggerActiveHint" timestamp="1598952460446">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="458" height="466" key="DebuggerActiveHint/0.0.1536.824@0.0.1536.824" timestamp="1598952460446" />
-    <state x="1078" y="243" key="FileChooserDialogImpl" timestamp="1604129612110">
+    <state x="1078" y="243" key="FileChooserDialogImpl" timestamp="1604215287744">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="1078" y="243" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1604129612110" />
-    <state width="1493" height="286" key="GridCell.Tab.0.bottom" timestamp="1604046220356">
+    <state x="1078" y="243" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1604215287744" />
+    <state width="1493" height="178" key="GridCell.Tab.0.bottom" timestamp="1604304888140">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1491" height="237" key="GridCell.Tab.0.bottom/0.0.1536.824/1920.34.1680.1010@0.0.1536.824" timestamp="1599276700053" />
-    <state width="1493" height="286" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1604046220356" />
-    <state width="1493" height="286" key="GridCell.Tab.0.center" timestamp="1604046220356">
+    <state width="1493" height="178" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1604304888140" />
+    <state width="1493" height="178" key="GridCell.Tab.0.center" timestamp="1604304888139">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1491" height="237" key="GridCell.Tab.0.center/0.0.1536.824/1920.34.1680.1010@0.0.1536.824" timestamp="1599276700053" />
-    <state width="1493" height="286" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1604046220356" />
-    <state width="1493" height="286" key="GridCell.Tab.0.left" timestamp="1604046220356">
+    <state width="1493" height="178" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1604304888139" />
+    <state width="1493" height="178" key="GridCell.Tab.0.left" timestamp="1604304888139">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1491" height="237" key="GridCell.Tab.0.left/0.0.1536.824/1920.34.1680.1010@0.0.1536.824" timestamp="1599276700052" />
-    <state width="1493" height="286" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1604046220356" />
-    <state width="1493" height="286" key="GridCell.Tab.0.right" timestamp="1604046220356">
+    <state width="1493" height="178" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1604304888139" />
+    <state width="1493" height="178" key="GridCell.Tab.0.right" timestamp="1604304888139">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1491" height="237" key="GridCell.Tab.0.right/0.0.1536.824/1920.34.1680.1010@0.0.1536.824" timestamp="1599276700053" />
-    <state width="1493" height="286" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1604046220356" />
-    <state width="1493" height="168" key="GridCell.Tab.1.bottom" timestamp="1603976379206">
+    <state width="1493" height="178" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1604304888139" />
+    <state width="1493" height="178" key="GridCell.Tab.1.bottom" timestamp="1604304888140">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1491" height="237" key="GridCell.Tab.1.bottom/0.0.1536.824/1920.34.1680.1010@0.0.1536.824" timestamp="1599276700054" />
-    <state width="1493" height="168" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1603976379206" />
-    <state width="1493" height="168" key="GridCell.Tab.1.center" timestamp="1603976379206">
+    <state width="1493" height="178" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1604304888140" />
+    <state width="1493" height="178" key="GridCell.Tab.1.center" timestamp="1604304888140">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1491" height="237" key="GridCell.Tab.1.center/0.0.1536.824/1920.34.1680.1010@0.0.1536.824" timestamp="1599276700053" />
-    <state width="1493" height="168" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1603976379206" />
-    <state width="1493" height="168" key="GridCell.Tab.1.left" timestamp="1603976379206">
+    <state width="1493" height="178" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1604304888140" />
+    <state width="1493" height="178" key="GridCell.Tab.1.left" timestamp="1604304888140">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1491" height="237" key="GridCell.Tab.1.left/0.0.1536.824/1920.34.1680.1010@0.0.1536.824" timestamp="1599276700053" />
-    <state width="1493" height="168" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1603976379206" />
-    <state width="1493" height="168" key="GridCell.Tab.1.right" timestamp="1603976379206">
+    <state width="1493" height="178" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1604304888140" />
+    <state width="1493" height="178" key="GridCell.Tab.1.right" timestamp="1604304888140">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1491" height="237" key="GridCell.Tab.1.right/0.0.1536.824/1920.34.1680.1010@0.0.1536.824" timestamp="1599276700053" />
-    <state width="1493" height="168" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1603976379206" />
-    <state width="1493" height="168" key="GridCell.Tab.2.bottom" timestamp="1603976379208">
+    <state width="1493" height="178" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1604304888140" />
+    <state width="1493" height="75" key="GridCell.Tab.2.bottom" timestamp="1604154349391">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1493" height="238" key="GridCell.Tab.2.bottom/0.0.1536.824/1920.34.1680.1010@0.0.1536.824" timestamp="1599078839888" />
-    <state width="1493" height="168" key="GridCell.Tab.2.bottom/0.0.1536.824@0.0.1536.824" timestamp="1603976379208" />
-    <state width="1493" height="168" key="GridCell.Tab.2.center" timestamp="1603976379207">
+    <state width="1493" height="75" key="GridCell.Tab.2.bottom/0.0.1536.824@0.0.1536.824" timestamp="1604154349391" />
+    <state width="1493" height="75" key="GridCell.Tab.2.center" timestamp="1604154349390">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1493" height="238" key="GridCell.Tab.2.center/0.0.1536.824/1920.34.1680.1010@0.0.1536.824" timestamp="1599078839887" />
-    <state width="1493" height="168" key="GridCell.Tab.2.center/0.0.1536.824@0.0.1536.824" timestamp="1603976379207" />
-    <state width="1493" height="168" key="GridCell.Tab.2.left" timestamp="1603976379206">
+    <state width="1493" height="75" key="GridCell.Tab.2.center/0.0.1536.824@0.0.1536.824" timestamp="1604154349390" />
+    <state width="1493" height="75" key="GridCell.Tab.2.left" timestamp="1604154349390">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1493" height="238" key="GridCell.Tab.2.left/0.0.1536.824/1920.34.1680.1010@0.0.1536.824" timestamp="1599078839887" />
-    <state width="1493" height="168" key="GridCell.Tab.2.left/0.0.1536.824@0.0.1536.824" timestamp="1603976379206" />
-    <state width="1493" height="168" key="GridCell.Tab.2.right" timestamp="1603976379207">
+    <state width="1493" height="75" key="GridCell.Tab.2.left/0.0.1536.824@0.0.1536.824" timestamp="1604154349390" />
+    <state width="1493" height="75" key="GridCell.Tab.2.right" timestamp="1604154349391">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1493" height="238" key="GridCell.Tab.2.right/0.0.1536.824/1920.34.1680.1010@0.0.1536.824" timestamp="1599078839888" />
-    <state width="1493" height="168" key="GridCell.Tab.2.right/0.0.1536.824@0.0.1536.824" timestamp="1603976379207" />
+    <state width="1493" height="75" key="GridCell.Tab.2.right/0.0.1536.824@0.0.1536.824" timestamp="1604154349391" />
     <state width="283" height="477" key="HiddenNamespacesPopup" timestamp="1603637704859">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -431,10 +427,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="270" y="110" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1603645211722" />
-    <state x="361" y="146" key="Vcs.Push.Dialog.v2" timestamp="1600535474465">
+    <state x="361" y="146" key="Vcs.Push.Dialog.v2" timestamp="1604129733368">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="146" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1600535474465" />
+    <state x="361" y="146" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1604129733368" />
     <state x="349" y="68" key="com.intellij.database.dbimport.ImportDialog" timestamp="1599336577825">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -456,27 +452,31 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="-307" y="219" width="1350" height="638" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog/0.0.1536.824@0.0.1536.824" timestamp="1599334923024" />
-    <state x="302" y="106" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1604048133491">
+    <state x="562" y="330" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1604129711318">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="302" y="106" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.1536.824@0.0.1536.824" timestamp="1604048133491" />
-    <state x="323" y="235" width="797" height="534" key="find.popup" timestamp="1603643259919">
+    <state x="562" y="330" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1604129711318" />
+    <state x="302" y="106" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1604130199035">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="302" y="106" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.1536.824@0.0.1536.824" timestamp="1604130199035" />
+    <state x="323" y="235" width="797" height="534" key="find.popup" timestamp="1604151417674">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="323" y="236" width="797" height="534" key="find.popup/0.0.1536.824/1920.34.1680.1010@0.0.1536.824" timestamp="1599069441359" />
-    <state x="323" y="235" width="797" height="534" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1603643259919" />
-    <state x="178" y="22" key="new project wizard" timestamp="1600075945864">
+    <state x="323" y="235" width="797" height="534" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1604151417674" />
+    <state x="247" y="221" key="new project wizard" timestamp="1604216012091">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="178" y="22" key="new project wizard/0.0.1536.824@0.0.1536.824" timestamp="1600075945864" />
+    <state x="247" y="221" key="new project wizard/0.0.1536.824@0.0.1536.824" timestamp="1604216012091" />
     <state x="470" y="40" key="refactoring.ChangeSignatureDialog" timestamp="1598942775936">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="470" y="40" key="refactoring.ChangeSignatureDialog/0.0.1536.824@0.0.1536.824" timestamp="1598942775936" />
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1599647964425">
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1604155499021">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1599647964425" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1604155499021" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -553,12 +553,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/rabbittest/src/main/java/com/de/rabbittest/controller/MyProducer.java</url>
-          <line>70</line>
+          <line>80</line>
           <option name="timeStamp" value="34" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/rabbittest/src/main/java/com/de/rabbittest/direct/RabbitVideoService.java</url>
-          <line>186</line>
+          <line>191</line>
           <option name="timeStamp" value="35" />
         </line-breakpoint>
       </breakpoints>

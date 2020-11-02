@@ -3,6 +3,7 @@ package com.de.rabbittest.controller;
 import com.de.rabbittest.direct.TestService;
 import com.de.rabbittest.direct.VideoSender;
 import com.de.rabbittest.direct.RabbitVideoService;
+import com.de.rabbittest.direct.VideoServiceTest;
 import com.de.rabbittest.entity.VideoNotice;
 //import com.de.service.AdminUserService;
 import com.de.util.MyCameraUtils;
@@ -42,6 +43,9 @@ public class MyProducer {
     @Autowired
     private TestService testService;
 
+    @Autowired
+    private VideoServiceTest videoServiceTest;
+
 //    @Autowired
 //    private AdminUserService adminUserService;
 
@@ -49,6 +53,12 @@ public class MyProducer {
     @ResponseBody
     public Map<String, Integer> getMessageNum() throws IOException, TimeoutException {
         return rabbitVideoService.getQueueCount();
+    }
+
+    @GetMapping("/mytest")
+    @ResponseBody
+    public VideoNotice getNotice(){
+        return videoServiceTest.noticeTest(1);
     }
 
     @GetMapping("/getmessage")

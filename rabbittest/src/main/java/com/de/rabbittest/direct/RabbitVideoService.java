@@ -1,6 +1,7 @@
 package com.de.rabbittest.direct;
 
 import com.de.rabbittest.dao.VideoMessageMapper;
+import com.de.rabbittest.dao.VideoNoticeMapper;
 import com.de.rabbittest.entity.VideoMqMessage;
 import com.de.rabbittest.entity.VideoNotice;
 import com.de.rabbittest.entity.MessageBuilder;
@@ -47,6 +48,10 @@ public class RabbitVideoService implements ChannelAwareMessageListener {
     
     @Autowired
     private VideoMessageMapper videoMessageMapper;
+
+    @Autowired
+    private VideoNoticeMapper videoNoticeMapper;
+
 
 //    @Autowired
 //    private ConnectionFactory connectionFactory;
@@ -188,12 +193,12 @@ public class RabbitVideoService implements ChannelAwareMessageListener {
             int userId = videoNotice.getUserId();
 
             //检查消息数据库中是否有该用户未处理完的视频，如果有，不予受理
-            if (videoMessageMapper.selectUserId(userId)>0){
+            if (videoNoticeMapper.selectUserId(userId)!=null){
                 return ResultGenerator.genFailResult("您有尚未处理完的视频，请等待后再上传新的");
             }
 
             //将视频保存到消息数据库中，以便后续查询和故障恢复
-            int i = videoMessageMapper.insertMessage(videoNotice);
+            int i = videoNoticeMapper.insert(videoNotice);
             //当消息保存数据库成功，构造message
             if(i>0){
                 MessageBuilder messageBuilder = MessageBuilder.newMessage(videoNotice.getTopicCode(),videoNotice.getTitle());
